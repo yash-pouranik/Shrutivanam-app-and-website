@@ -43,58 +43,53 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-            ? "bg-[#0d0b1e]/95 backdrop-blur-xl border-b border-[rgba(201,168,76,0.15)] shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+            ? "bg-[#FEF7ED]/95 backdrop-blur-md border-b border-[#EBDBCD] shadow-sm"
             : "bg-transparent"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-20 md:h-24">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#E2C97E] flex items-center justify-center text-[#0d0b1e] text-lg font-bold shadow-[0_0_15px_rgba(201,168,76,0.3)] group-hover:shadow-[0_0_25px_rgba(201,168,76,0.5)] transition-all duration-300">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="w-10 h-10 rounded-xl bg-[#FF7F32] flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-orange-200 transition-transform group-hover:scale-110">
                 ॐ
               </div>
-              <span
-                className="font-[family-name:var(--font-cinzel)] text-lg font-semibold tracking-widest"
-                style={{ color: "#E2C97E" }}
-              >
-                Shrutivanam
+              <span className="text-2xl font-extrabold tracking-tight text-[#3B2E2A]">
+                Shruti<span className="text-[#FF7F32]">vanam</span>
               </span>
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden md:flex items-center gap-10">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`nav-link text-sm font-medium tracking-wider transition-colors duration-300 ${pathname === link.href
-                      ? "text-[#E2C97E] active"
-                      : "text-[#C8BFAD] hover:text-[#E2C97E]"
+                  className={`text-sm font-bold tracking-wide transition-colors duration-200 ${pathname === link.href
+                      ? "text-[#FF7F32]"
+                      : "text-[#3B2E2A] hover:text-[#FF7F32]"
                     }`}
                 >
                   {link.label}
                 </Link>
               ))}
-              <a
-                href="https://wa.me/917566585848?text=Namaste%2C%20I%20am%20interested%20in%20learning%20more%20about%20Shrutivanam%20courses."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary px-5 py-2 rounded-full text-sm font-semibold tracking-wider"
+              <Link
+                href="/courses"
+                className="btn-primary px-8 py-3.5 text-sm shadow-xl shadow-orange-100"
               >
-                Inquire Now
-              </a>
+                Get Started
+              </Link>
             </nav>
 
             {/* Mobile hamburger */}
             <button
               id="mobile-menu-toggle"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden w-10 h-10 flex items-center justify-center rounded-full border border-[rgba(201,168,76,0.3)] text-[#E2C97E] transition-all duration-300 hover:bg-[rgba(201,168,76,0.1)]"
+              className="md:hidden w-12 h-12 flex items-center justify-center rounded-2xl bg-white border border-[#EBDBCD] text-[#3B2E2A] shadow-sm"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
             >
-              {menuOpen ? <X size={20} /> : <Menu size={20} />}
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -105,70 +100,68 @@ export default function Navbar() {
         className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         onClick={() => setMenuOpen(false)}
-        style={{ background: "rgba(13, 11, 30, 0.85)", backdropFilter: "blur(4px)" }}
+        style={{ background: "rgba(59, 46, 42, 0.4)", backdropFilter: "blur(4px)" }}
       />
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-50 md:hidden w-72 transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 bottom-0 z-50 md:hidden w-80 transition-transform duration-300 ease-in-out ${menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         style={{
-          background: "linear-gradient(180deg, #1A1040 0%, #0D0B1E 100%)",
-          borderLeft: "1px solid rgba(201, 168, 76, 0.15)",
+          background: "#FEF7ED",
+          borderLeft: "2px solid #EBDBCD",
         }}
       >
-        <div className="flex flex-col h-full p-8 pt-20">
+        <div className="flex flex-col h-full p-8 pt-24">
           {/* Close button */}
           <button
             onClick={() => setMenuOpen(false)}
-            className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center rounded-full border border-[rgba(201,168,76,0.3)] text-[#E2C97E]"
+            className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center rounded-2xl bg-white border border-[#EBDBCD] text-[#3B2E2A]"
             aria-label="Close menu"
           >
-            <X size={20} />
+            <X size={24} />
           </button>
 
           {/* Logo in drawer */}
-          <div className="text-center mb-10">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9A84C] to-[#E2C97E] flex items-center justify-center text-[#0d0b1e] text-xl font-bold mx-auto mb-3 shadow-[0_0_20px_rgba(201,168,76,0.3)]">
+          <div className="text-center mb-12">
+            <div className="w-14 h-14 rounded-2xl bg-[#FF7F32] flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 shadow-lg shadow-orange-200">
               ॐ
             </div>
-            <p className="font-[family-name:var(--font-cinzel)] text-[#E2C97E] text-sm tracking-widest">
+            <p className="text-xl font-black text-[#3B2E2A] tracking-tight">
               Shrutivanam
             </p>
           </div>
 
-          <div className="gold-divider mb-8" />
-
           {/* Links */}
-          <nav className="flex flex-col gap-2">
+          <nav className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 ${pathname === link.href
-                    ? "bg-[rgba(201,168,76,0.15)] text-[#E2C97E]"
-                    : "text-[#C8BFAD] hover:bg-[rgba(201,168,76,0.08)] hover:text-[#E2C97E]"
+                className={`flex items-center justify-between px-6 py-4 rounded-2xl font-bold transition-all duration-200 ${pathname === link.href
+                    ? "bg-[#FF7F32] text-white shadow-lg shadow-orange-100"
+                    : "text-[#3B2E2A] hover:bg-white"
                   }`}
               >
-                <span className="font-medium tracking-wider">{link.label}</span>
-                <span className="text-xs text-[#C9A84C]/60">{link.labelHi}</span>
+                <span>{link.label}</span>
+                <span className={pathname === link.href ? "text-white/70" : "text-[#FF7F32]"}>
+                  {link.labelHi}
+                </span>
               </Link>
             ))}
           </nav>
 
-          <div className="gold-divider my-8" />
+          <div className="mt-12 space-y-4">
+            <Link
+              href="/courses"
+              className="btn-primary w-full py-4 flex items-center justify-center text-base shadow-xl shadow-orange-100"
+            >
+              Explore Courses
+            </Link>
+          </div>
 
-          <a
-            href="https://wa.me/917566585848?text=Namaste%2C%20I%20am%20interested%20in%20learning%20more%20about%20Shrutivanam%20courses."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary w-full py-3 rounded-full text-center text-sm font-semibold tracking-wider"
-          >
-            Chat on WhatsApp
-          </a>
-
-          <p className="text-center text-[#C8BFAD]/40 text-xs mt-auto font-[family-name:var(--font-cormorant)] italic">
-            सा विद्या या विमुक्तये
+          <p className="text-center text-[#A89F9B] text-sm mt-auto font-medium italic">
+            "सा विद्या या विमुक्तये"
           </p>
         </div>
       </div>

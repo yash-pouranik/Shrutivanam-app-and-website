@@ -1,24 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Users, Sparkles, Globe } from "lucide-react";
+import Image from "next/image";
+import { 
+  ArrowRight, BookOpen, Users, Sparkles, Globe, 
+  Target, Zap, Trophy, Heart, Star
+} from "lucide-react";
 import { courses } from "@/data/courses";
 import { teachers } from "@/data/teachers";
 import CourseCard from "@/components/CourseCard";
 import TeacherCard from "@/components/TeacherCard";
 import WhatsAppStrip from "@/components/WhatsAppStrip";
-import SectionDivider from "@/components/SectionDivider";
 import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = {
-  title: "Shrutivanam — Spiritual Learning Platform",
+  title: "Shrutivanam — Putting Ancient Wisdom into Motion",
   description:
-    "Discover authentic Vedic education at Shrutivanam. Courses in Vedic Mathematics, Yoga, Sanskrit, and Indian Philosophy by expert teachers.",
-  keywords: [
-    "spiritual education platform",
-    "Vedic Maths course online",
-    "Learn Sanskrit for beginners",
-    "Yoga philosophy course India",
-  ],
+    "Discover authentic Vedic education at Shrutivanam. Courses in Vedic Mathematics, Yoga, Sanskrit, and Indian Philosophy.",
 };
 
 const whyPoints = [
@@ -48,235 +45,235 @@ const whyPoints = [
   },
 ];
 
+const stats = [
+  { icon: Trophy, label: "50+", desc: "Courses Completed" },
+  { icon: Users, label: "12K+", desc: "Active Happy Students" },
+  { icon: Target, label: "70+", desc: "Certified Expert Teachers" },
+];
+
 export default function HomePage() {
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────────── */}
-      <section className="hero-gradient relative pt-28 pb-16 md:pt-36 md:pb-20 flex items-center justify-center overflow-hidden">
-        {/* Decorative circles */}
-        <div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)",
-            border: "1px solid rgba(201,168,76,0.05)",
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full pointer-events-none"
-          style={{
-            border: "1px solid rgba(201,168,76,0.03)",
-          }}
-        />
+      <section className="relative pt-32 pb-0 md:pt-40 flex flex-col items-center overflow-hidden">
+        {/* Floating Background Icons */}
+        <div className="absolute top-20 left-[10%] floating-element opacity-20 text-[#FF7F32]">
+          <Zap size={48} fill="currentColor" />
+        </div>
+        <div className="absolute top-40 right-[15%] floating-element delay-200 opacity-20 text-[#7BBD8B]">
+          <Heart size={40} fill="currentColor" />
+        </div>
+        <div className="absolute bottom-40 left-[15%] floating-element delay-400 opacity-20 text-[#F9D048]">
+          <Star size={56} fill="currentColor" />
+        </div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 flex flex-col items-center">
-          {/* Heading */}
-          <h1 className="font-[family-name:var(--font-cinzel)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up animate-delay-200 leading-tight">
-            <span className="gold-shimmer">Ancient Wisdom.</span>
-            <br />
-            <span className="text-[#F5F0E8]">Modern Path.</span>
-          </h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center z-10">
+          <FadeIn direction="up">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#3B2E2A] leading-tight mb-6">
+              Putting your <span className="title-underline">Tradition</span> in <br className="hidden md:block" />
+              great motion
+            </h1>
+          </FadeIn>
 
-          <p className="text-[#C8BFAD]/80 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed animate-fade-in-up animate-delay-400">
-            A space for sincere learning. We offer structured courses in Vedic Mathematics, Yoga, Sanskrit, and Indian Philosophy.
-          </p>
+          <FadeIn direction="up" delay={0.2}>
+            <div className="flex flex-wrap items-center justify-center gap-6 mb-10 text-sm font-bold text-[#635A56]">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600">✓</div>
+                No Prior Prep
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600">✓</div>
+                Authentic Texts
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600">✓</div>
+                Expert Guidance
+              </div>
+            </div>
+          </FadeIn>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animate-delay-600">
-            <Link
-              href="/courses"
-              id="hero-explore-courses"
-              className="btn-primary px-8 py-4 rounded-full text-base font-semibold tracking-wide inline-flex items-center gap-2"
-            >
-              <span>Explore Courses</span>
-              <span className="font-[family-name:var(--font-cormorant)] text-sm">
-                / कोर्स देखें
-              </span>
-              <ArrowRight size={18} />
-            </Link>
-            <Link
-              href="/about"
-              id="hero-about-link"
-              className="btn-outline px-8 py-4 rounded-full text-base font-semibold tracking-wide"
-            >
-              Our Story
-            </Link>
+          <FadeIn direction="up" delay={0.4}>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16">
+              <Link href="/courses" className="btn-primary px-10 py-5 text-lg shadow-2xl shadow-orange-200">
+                Start Learning Now
+              </Link>
+              <p className="max-w-[280px] text-xs font-semibold text-[#A89F9B] leading-relaxed text-left sm:text-center">
+                We just don't give our students only lecture but real life experiences.
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* Hero Images Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-end max-w-5xl mx-auto relative px-4">
+            <FadeIn direction="right" className="hidden md:block">
+              <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden bg-[#7BBD8B]/20 border-4 border-white shadow-2xl rotate-[-3deg]">
+                <Image 
+                  src="/student_maths_1775934560279.png" 
+                  alt="Student Maths" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
+            </FadeIn>
+            
+            <FadeIn direction="up" delay={0.2}>
+              <div className="relative aspect-[4/5] rounded-[80px] overflow-hidden bg-[#FF7F32]/10 border-4 border-white shadow-2xl z-20">
+                <Image 
+                  src="/student_yoga_1775934542751.png" 
+                  alt="Student Yoga" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
+            </FadeIn>
+
+            <FadeIn direction="left" delay={0.4} className="hidden md:block">
+              <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden bg-[#F9D048]/20 border-4 border-white shadow-2xl rotate-[3deg]">
+                <Image 
+                  src="/student_sanskrit_1775934575788.png" 
+                  alt="Student Sanskrit" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
+            </FadeIn>
           </div>
+        </div>
 
-          {/* Scroll indicator */}
-          <div className="mt-20 flex flex-col items-center gap-2 opacity-40 animate-fade-in animate-delay-600">
-            <div
-              className="w-px h-12"
-              style={{
-                background:
-                  "linear-gradient(180deg, transparent, #C9A84C, transparent)",
-              }}
-            />
-            <p className="text-xs tracking-widest text-[#C9A84C] uppercase">
-              Scroll
-            </p>
+        {/* Bottom Stats Bar */}
+        <div className="w-full bg-[#3B2E2A] mt-[-60px] pt-24 pb-16 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap justify-between items-center gap-12">
+            {stats.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div key={i} className="flex items-center gap-5">
+                  <div className="w-14 h-14 rounded-2xl bg-[#FF7F32] flex items-center justify-center text-white shadow-lg">
+                    <Icon size={28} />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-3xl font-black text-white">{item.label}</p>
+                    <p className="text-sm font-bold text-white/50">{item.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+            <div className="flex -space-x-3 overflow-hidden p-2">
+              {[1, 2, 3, 4].map((n) => (
+                <div key={n} className="inline-block h-10 w-10 rounded-full ring-2 ring-[#3B2E2A] bg-[#FF7F32] flex items-center justify-center text-[10px] font-bold text-white uppercase">
+                  U{n}
+                </div>
+              ))}
+              <div className="flex items-center justify-center h-10 w-10 text-xs font-bold text-white/50 pl-4 uppercase">
+                +12k students
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ─── ABOUT SNIPPET ────────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-ambient-indigo border-t border-[rgba(201,168,76,0.1)]">
+      {/* ─── ABOUT SECTION ────────────────────────────────────────── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <FadeIn direction="right">
-              <p className="text-[#C9A84C] text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
-                हमारे बारे में · About Us
-              </p>
-              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-[#F5F0E8] mb-4 leading-tight">
-                Tradition for the <span className="gold-shimmer">Modern Mind</span>
-              </h2>
-              <p className="text-[#C8BFAD]/80 text-sm md:text-base leading-relaxed mb-4">
-                Shrutivanam ("forest of sound") is a platform built to pass on traditional Indian knowledge without the fluff. We focus on the original texts and practices.
-              </p>
-              <p className="text-[#C8BFAD]/80 text-sm md:text-base leading-relaxed mb-8">
-                Our classes are taught by practitioners who also have strong academic backgrounds, ensuring the material is grounded, practical, and highly accurate.
-              </p>
-              <Link
-                href="/about"
-                id="about-read-more"
-                className="btn-outline px-6 py-2 rounded-full text-xs font-semibold tracking-wider inline-flex items-center gap-2"
-              >
-                Read More
-                <ArrowRight size={14} />
-              </Link>
+          <div className="grid md:grid-cols-2 gap-20 items-center">
+            <FadeIn direction="right" className="relative">
+              <div className="relative w-full aspect-square rounded-[100px] overflow-hidden bg-white p-4 shadow-xl">
+                 <div className="absolute inset-0 bg-[#F9D048]/10 rounded-[100px]" />
+                 <Image 
+                  src="/student_sanskrit_1775934575788.png" 
+                  alt="Our Mission" 
+                  fill 
+                  className="object-cover rounded-[80px]"
+                />
+              </div>
+              {/* Floating Badge */}
+              <div className="absolute -bottom-10 -right-10 bg-[#FF7F32] p-8 rounded-[40px] shadow-2xl text-white">
+                <p className="text-5xl font-black mb-1">10+</p>
+                <p className="text-sm font-bold opacity-80 uppercase tracking-widest">Years Exp</p>
+              </div>
             </FadeIn>
-            <FadeIn direction="left" delay={0.2} className="relative">
-              {/* Decorative stacked quote */}
-              <div
-                className="glass-card rounded-2xl p-6 text-center relative"
-              >
-                <p className="font-[family-name:var(--font-cormorant)] text-4xl text-[#C9A84C]/20 mb-2 leading-none">
-                  &ldquo;
+
+            <FadeIn direction="left" delay={0.2}>
+              <p className="text-[#FF7F32] font-black uppercase tracking-widest text-sm mb-4">Shaping the future of kids</p>
+              <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-8 leading-tight">
+                Authentic Vedic Wisdom <br />
+                for the <span className="text-[#FF7F32]">Modern Mind</span>
+              </h2>
+              <div className="space-y-6 text-[#635A56] text-lg font-medium leading-relaxed mb-10">
+                <p>
+                  We focus on one impactful lesson at a time. Shrutivanam brings you the treasures of ancient Indian knowledge — pure, undiluted, and structured for today.
                 </p>
-                <p className="font-[family-name:var(--font-cormorant)] text-xl italic text-[#E2C97E] mb-2">
-                  तमसो मा ज्योतिर्गमय
-                </p>
-                <p className="text-[#C8BFAD]/60 text-xs tracking-wide">
-                  Lead me from darkness to light
-                </p>
-                <div className="gold-divider mt-4 mb-3" />
-                <p className="text-[#C8BFAD]/50 text-[10px] tracking-widest uppercase">
-                  Brihadaranyaka Upanishad
+                <p>
+                  Our ecosystem is built for sincere seekers who want to explore Vedic Maths, Sanskrit, and Philosophy with academic rigor and spiritual depth.
                 </p>
               </div>
+              <Link href="/about" className="btn-outline px-10 py-5 text-base">
+                Discover Our Story
+              </Link>
             </FadeIn>
           </div>
         </div>
       </section>
 
       {/* ─── COURSES PREVIEW ──────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-ambient-gold border-t border-[rgba(201,168,76,0.1)] relative">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <FadeIn direction="up">
-            <div className="text-center mb-8">
-              <p className="text-[#C9A84C] text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
-                हमारे कोर्स · Our Courses
-              </p>
-              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-[#F5F0E8] mb-3">
-                Core Subjects
-              </h2>
-              <p className="text-[#C8BFAD]/70 max-w-lg mx-auto text-sm">
-                Four foundational subjects, deeply researched and structured for clarity.
-              </p>
+      <section className="py-24 bg-white border-y border-[#EBDBCD]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
+            <div className="max-w-xl">
+              <p className="text-[#7BBD8B] font-black uppercase tracking-widest text-sm mb-4">Our Programs</p>
+              <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-4">Foundation for Life</h2>
+              <p className="text-[#635A56] text-lg font-medium">Four core subjects, deeply researched and mastery-focused.</p>
             </div>
-          </FadeIn>
+            <Link href="/courses" className="btn-primary px-8 py-4 mb-2">View All Programs</Link>
+          </div>
 
-          {/* Mobile: horizontal scroll; Desktop: grid */}
-          <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0 scrollbar-none">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {courses.map((course, i) => (
-              <FadeIn key={course.slug} delay={i * 0.1} direction="up" className="min-w-[280px] snap-start md:min-w-0">
+              <FadeIn key={course.slug} delay={i * 0.1} direction="up">
                 <CourseCard course={course} />
               </FadeIn>
             ))}
           </div>
-
-          <FadeIn direction="up">
-            <div className="text-center mt-10">
-              <Link
-                href="/courses"
-                id="courses-view-all"
-                className="btn-outline px-8 py-3 rounded-full text-sm font-semibold tracking-wider inline-flex items-center gap-2"
-              >
-                View All Courses
-                <ArrowRight size={16} />
-              </Link>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
-      {/* ─── WHY SHRUTIVANAM ─────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-ambient-dark border-t border-[rgba(201,168,76,0.15)] shadow-[inset_0_20px_40px_rgba(0,0,0,0.5)]">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <FadeIn direction="up">
-            <div className="text-center mb-8">
-              <p className="text-[#C9A84C] text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
-                विशेषता · Why Choose Us
-              </p>
-              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-[#F5F0E8]">
-                Why Look Here?
-              </h2>
-            </div>
-          </FadeIn>
+      {/* ─── WHY CHOOSE US ───────────────────────────────────────── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#FEF7ED]">
+        <div className="max-w-7xl mx-auto text-center mb-16">
+           <p className="text-[#F9D048] font-black uppercase tracking-widest text-sm mb-4">Why Shrutivanam</p>
+           <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A]">Learning that sticks</h2>
+        </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {whyPoints.map((point, i) => {
-              const Icon = point.icon;
-              return (
-                <FadeIn key={i} delay={i * 0.15} direction="up" className="h-full">
-                  <div
-                    className="glass-card rounded-2xl p-6 text-center hover:border-[rgba(201,168,76,0.35)] transition-all duration-300 hover:-translate-y-1 h-full"
-                  >
-                    <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(201,168,76,0.15) 0%, rgba(31,21,88,0.4) 100%)",
-                        border: "1px solid rgba(201, 168, 76, 0.25)",
-                      }}
-                    >
-                      <Icon size={24} className="text-[#C9A84C]" />
-                    </div>
-                    <h3 className="font-[family-name:var(--font-cinzel)] font-semibold text-[#F5F0E8] mb-1 text-sm md:text-base">
-                      {point.title}
-                    </h3>
-                    <p className="text-[#C9A84C]/60 text-xs italic font-[family-name:var(--font-cormorant)] mb-2">
-                      {point.titleHi}
-                    </p>
-                    <p className="text-[#C8BFAD]/70 text-xs leading-relaxed">
-                      {point.desc}
-                    </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+          {whyPoints.map((point, i) => {
+            const Icon = point.icon;
+            const colors = ['bg-orange-100 text-orange-600', 'bg-green-100 text-green-600', 'bg-yellow-100 text-yellow-600', 'bg-blue-100 text-blue-600'];
+            return (
+              <FadeIn key={i} delay={i * 0.15} direction="up">
+                <div className="bg-white p-10 rounded-[40px] shadow-sm hover:shadow-xl transition-all h-full border border-transparent hover:border-[#FF7F32]/10 group">
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 ${colors[i % 4]}`}>
+                    <Icon size={32} />
                   </div>
-                </FadeIn>
-              );
-            })}
-          </div>
+                  <h3 className="text-xl font-black text-[#3B2E2A] mb-4">{point.title}</h3>
+                  <p className="text-[#635A56] font-semibold text-sm leading-relaxed">{point.desc}</p>
+                </div>
+              </FadeIn>
+            );
+          })}
         </div>
       </section>
 
       {/* ─── TEACHERS PREVIEW ────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-ambient-indigo border-t border-[rgba(201,168,76,0.1)]">
+      <section className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeIn direction="up">
-            <div className="text-center mb-8">
-              <p className="text-[#C9A84C] text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
-                हमारे गुरु · Our Teachers
-              </p>
-              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-[#F5F0E8] mb-2">
-                Learn from the Best
-              </h2>
-              <p className="text-[#C8BFAD]/70 max-w-lg mx-auto text-sm">
-                Scholars who bring academic rigor to traditional systems.
-              </p>
+            <div className="text-center mb-16">
+              <p className="text-[#FF7F32] font-black uppercase tracking-widest text-sm mb-4">Our Gurus</p>
+              <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-4">Learn from the Best</h2>
+              <p className="text-[#635A56] text-lg font-medium">Scholars who bring academic rigor to traditional systems.</p>
             </div>
           </FadeIn>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {teachers.map((teacher, i) => (
               <FadeIn key={teacher.slug} delay={i * 0.15} direction="up">
                 <TeacherCard teacher={teacher} />
@@ -285,7 +282,7 @@ export default function HomePage() {
           </div>
 
           <FadeIn direction="up">
-            <div className="text-center mt-10">
+            <div className="text-center mt-16">
               <Link
                 href="/about#teachers"
                 id="teachers-view-all"

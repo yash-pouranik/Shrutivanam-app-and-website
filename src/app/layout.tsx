@@ -1,53 +1,29 @@
 import type { Metadata } from "next";
-import { Cinzel, Cormorant_Garamond, Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import MouseOrb from "@/components/MouseOrb";
 
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "600", "700", "900"],
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Shrutivanam — Spiritual Learning Platform",
+    default: "Shrutivanam — Modern Spiritual Education",
     template: "%s | Shrutivanam",
   },
   description:
-    "Shrutivanam offers authentic courses in Vedic Mathematics, Yoga, Sanskrit, and Indian Philosophy. Ancient wisdom made accessible for modern learners.",
+    "Authentic Vedic learning for the modern world. Courses in Vedic Maths, Yoga, Sanskrit, and Indian Philosophy.",
   keywords: [
-    "Vedic Maths course online",
-    "Learn Sanskrit for beginners",
-    "Yoga philosophy course India",
-    "Spiritual education platform",
-    "Indian philosophy online",
-    "Vedic learning",
+    "spiritual education for kids",
+    "Vedic Maths online",
+    "Sanskrit for kids",
+    "Indian philosophy",
   ],
-  openGraph: {
-    type: "website",
-    siteName: "Shrutivanam",
-    title: "Shrutivanam — Spiritual Learning Platform",
-    description:
-      "Authentic courses in Vedic Mathematics, Yoga, Sanskrit & Indian Philosophy",
-  },
 };
 
 export default function RootLayout({
@@ -58,10 +34,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cinzel.variable} ${cormorant.variable} ${inter.variable} h-full`}
+      className={`${poppins.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-[#0d0b1e] text-[#F5F0E8] antialiased overflow-x-hidden">
-        <MouseOrb />
+      <body className="min-h-full flex flex-col bg-[#FEF7ED] text-[#3B2E2A] antialiased overflow-x-hidden font-[family-name:var(--font-poppins)]">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
