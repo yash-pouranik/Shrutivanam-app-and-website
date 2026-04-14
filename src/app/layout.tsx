@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MouseOrb from "@/components/MouseOrb";
+import Providers from "@/components/Providers";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -60,11 +61,20 @@ export default function RootLayout({
       lang="en"
       className={`${cinzel.variable} ${cormorant.variable} ${inter.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-[#0d0b1e] text-[#F5F0E8] antialiased overflow-x-hidden">
-        <MouseOrb />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="min-h-full bg-[#0d0b1e] text-[#F5F0E8] antialiased selection:bg-[#C9A84C]/30 selection:text-white">
+        <Providers>
+          <MouseOrb />
+          <Navbar />
+          
+          {/* Main content wrapper for curtain reveal */}
+          <div className="relative z-10 bg-[#0d0b1e] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] border-b border-white/5">
+            <main className="min-h-[calc(100vh-80px)] pt-24 md:pt-28">
+              {children}
+            </main>
+          </div>
+
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

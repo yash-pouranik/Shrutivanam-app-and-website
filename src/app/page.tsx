@@ -6,7 +6,6 @@ import { teachers } from "@/data/teachers";
 import CourseCard from "@/components/CourseCard";
 import TeacherCard from "@/components/TeacherCard";
 import WhatsAppStrip from "@/components/WhatsAppStrip";
-import SectionDivider from "@/components/SectionDivider";
 import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = {
@@ -52,7 +51,7 @@ export default function HomePage() {
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────────── */}
-      <section className="hero-gradient relative pt-28 pb-16 md:pt-36 md:pb-20 flex items-center justify-center overflow-hidden">
+      <section className="hero-gradient relative pt-12 pb-16 md:pt-16 md:pb-20 flex items-center justify-center overflow-hidden">
         {/* Decorative circles */}
         <div
           className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
@@ -131,7 +130,7 @@ export default function HomePage() {
                 Tradition for the <span className="gold-shimmer">Modern Mind</span>
               </h2>
               <p className="text-[#C8BFAD]/80 text-sm md:text-base leading-relaxed mb-4">
-                Shrutivanam ("forest of sound") is a platform built to pass on traditional Indian knowledge without the fluff. We focus on the original texts and practices.
+                Shrutivanam (&ldquo;forest of sound&rdquo;) is a platform built to pass on traditional Indian knowledge without the fluff. We focus on the original texts and practices.
               </p>
               <p className="text-[#C8BFAD]/80 text-sm md:text-base leading-relaxed mb-8">
                 Our classes are taught by practitioners who also have strong academic backgrounds, ensuring the material is grounded, practical, and highly accurate.
