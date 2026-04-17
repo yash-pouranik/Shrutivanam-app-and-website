@@ -19,24 +19,21 @@ const STYLES = `
 .cinematic-footer-wrapper {
   -webkit-font-smoothing: antialiased;
   
-  /* Dynamic Variables using standard shadcn/tailwind tokens */
-  --pill-bg-1: rgba(201, 168, 76, 0.08); /* Gold hint */
-  --pill-bg-2: rgba(31, 21, 88, 0.1);    /* Purple hint */
-  --pill-shadow: rgba(0, 0, 0, 0.4);
-  --pill-highlight: rgba(201, 168, 76, 0.15);
-  --pill-inset-shadow: rgba(0, 0, 0, 0.6);
-  --pill-border: rgba(201, 168, 76, 0.12);
+  /* Dynamic Variables for White Theme Pills */
+  --pill-bg-1: rgba(255, 255, 255, 1);
+  --pill-bg-2: rgba(248, 250, 252, 1);
+  --pill-shadow: rgba(15, 23, 42, 0.05);
+  --pill-border: rgba(226, 232, 240, 1);
   
-  --pill-bg-1-hover: rgba(201, 168, 76, 0.15);
-  --pill-bg-2-hover: rgba(31, 21, 88, 0.2);
-  --pill-border-hover: rgba(201, 168, 76, 0.3);
-  --pill-shadow-hover: rgba(0, 0, 0, 0.6);
-  --pill-highlight-hover: rgba(201, 168, 76, 0.25);
+  --pill-bg-1-hover: rgba(255, 237, 213, 1);
+  --pill-bg-2-hover: rgba(255, 237, 213, 1);
+  --pill-border-hover: rgba(253, 186, 116, 1);
+  --pill-shadow-hover: rgba(234, 88, 12, 0.15);
 }
 
 @keyframes footer-breathe {
-  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+  100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.2; }
 }
 
 @keyframes footer-scroll-marquee {
@@ -45,8 +42,8 @@ const STYLES = `
 }
 
 @keyframes footer-heartbeat {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.3)); }
-  15%, 45% { transform: scale(1.2); filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.6)); }
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(234, 88, 12, 0.1)); }
+  15%, 45% { transform: scale(1.2); filter: drop-shadow(0 0 10px rgba(234, 88, 12, 0.2)); }
   30% { transform: scale(1); }
 }
 
@@ -62,68 +59,58 @@ const STYLES = `
   animation: footer-heartbeat 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 
-/* Theme-adaptive Grid Background */
+/* Theme-adaptive Grid Background - Light Mode */
 .footer-bg-grid {
   background-size: 80px 80px;
   background-image: 
-    linear-gradient(to right, rgba(201, 168, 76, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(201, 168, 76, 0.05) 1px, transparent 1px);
-  mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
 
-/* Aurora Glow - Optimized for Shrutivanam palette */
+/* Warm Sunlight Glow */
 .footer-aurora {
   background: radial-gradient(
     circle at 50% 50%, 
-    rgba(201, 168, 76, 0.15) 0%, 
-    rgba(31, 21, 88, 0.15) 40%, 
+    rgba(234, 88, 12, 0.1) 0%, 
+    rgba(253, 186, 116, 0.05) 40%, 
     transparent 70%
   );
 }
 
-/* Glass Pill Theming */
+/* Light Pill Theming */
 .footer-glass-pill {
   background: linear-gradient(145deg, var(--pill-bg-1) 0%, var(--pill-bg-2) 100%);
-  box-shadow: 
-      0 10px 30px -10px var(--pill-shadow), 
-      inset 0 1px 1px var(--pill-highlight), 
-      inset 0 -1px 2px var(--pill-inset-shadow);
+  box-shadow: 0 10px 30px -10px var(--pill-shadow);
   border: 1px solid var(--pill-border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #475569; /* slate-600 */
 }
 
 .footer-glass-pill:hover {
   background: linear-gradient(145deg, var(--pill-bg-1-hover) 0%, var(--pill-bg-2-hover) 100%);
   border-color: var(--pill-border-hover);
-  box-shadow: 
-      0 20px 40px -10px var(--pill-shadow-hover), 
-      inset 0 1px 1px var(--pill-highlight-hover);
-  color: #fff;
+  box-shadow: 0 15px 30px -10px var(--pill-shadow-hover);
+  color: #ea580c; /* orange-600 */
 }
 
-/* Giant Background Text Masking */
+/* Giant Background Text Masking - Light Mode */
 .footer-giant-bg-text {
   font-size: 20vw;
   line-height: 0.75;
   font-weight: 900;
   letter-spacing: -0.05em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(201, 168, 76, 0.05);
-  background: linear-gradient(180deg, rgba(201, 168, 76, 0.1) 0%, transparent 80%);
+  -webkit-text-stroke: 1px rgba(15, 23, 42, 0.03); /* slight slate stroke */
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.04) 0%, transparent 80%);
   -webkit-background-clip: text;
   background-clip: text;
 }
 
-/* Metallic Text Glow */
+/* Solid Text Styling (No Glow in Light Mode) */
 .footer-text-glow {
-  background: linear-gradient(180deg, #F5F0E8 0%, #C9A84C 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0px 0px 30px rgba(201, 168, 76, 0.2));
+  color: #0f172a; /* Slate 900 */
 }
 `;
 
@@ -209,11 +196,11 @@ MagneticButton.displayName = "MagneticButton";
 // -------------------------------------------------------------------------
 const MarqueeItem = () => (
   <div className="flex items-center space-x-12 px-6">
-    <span>Ancient Wisdom</span> <span className="text-[#C9A84C]/60 text-xl font-bold">ॐ</span>
-    <span>Modern Learning</span> <span className="text-[#C9A84C]/60 text-xl font-bold">ॐ</span>
-    <span>Vedic Mathematics</span> <span className="text-[#C9A84C]/60 text-xl font-bold">ॐ</span>
-    <span>Sanskrit Roots</span> <span className="text-[#C9A84C]/60 text-xl font-bold">ॐ</span>
-    <span>Spiritual Growth</span> <span className="text-[#C9A84C]/60 text-xl font-bold">ॐ</span>
+    <span>Ancient Wisdom</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
+    <span>Modern Learning</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
+    <span>Vedic Mathematics</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
+    <span>Sanskrit Roots</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
+    <span>Spiritual Growth</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
   </div>
 );
 
@@ -283,10 +270,10 @@ export function CinematicFooter() {
         style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
         {/* Fixed footer reveal */}
-        <footer className="fixed bottom-0 left-0 flex h-[80vh] md:h-screen w-full flex-col justify-between overflow-hidden bg-[#0d0b1e] text-[#F5F0E8] cinematic-footer-wrapper">
+        <footer className="fixed bottom-0 left-0 flex h-[80vh] md:h-screen w-full flex-col justify-between overflow-hidden bg-white text-slate-800 cinematic-footer-wrapper border-t border-slate-200">
           
           {/* Ambient Decor */}
-          <div className="footer-aurora absolute left-1/2 top-1/2 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 animate-footer-breathe rounded-[50%] blur-[100px] pointer-events-none z-0" />
+          <div className="footer-aurora absolute left-1/2 top-1/2 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 animate-footer-breathe rounded-[50%] pointer-events-none z-0" />
           <div className="footer-bg-grid absolute inset-0 z-0 pointer-events-none" />
 
           {/* Giant background text */}
@@ -298,8 +285,8 @@ export function CinematicFooter() {
           </div>
 
           {/* 1. Sleek Marquee */}
-          <div className="absolute top-16 left-0 w-full overflow-hidden border-y border-white/5 bg-black/20 backdrop-blur-md py-6 z-10 -rotate-1 scale-105 shadow-2xl">
-            <div className="flex w-max animate-footer-scroll-marquee text-xs md:text-sm font-bold tracking-[0.4em] text-[#C9A84C]/50 uppercase font-[family-name:var(--font-inter)]">
+          <div className="absolute top-16 left-0 w-full overflow-hidden border-y border-slate-200 bg-slate-50/80 backdrop-blur-md py-6 z-10 -rotate-1 scale-105 shadow-sm">
+            <div className="flex w-max animate-footer-scroll-marquee text-xs md:text-sm font-bold tracking-[0.4em] text-slate-400 uppercase font-[family-name:var(--font-inter)]">
               <MarqueeItem />
               <MarqueeItem />
             </div>
@@ -317,27 +304,27 @@ export function CinematicFooter() {
             {/* Interactive Magnetic Pills */}
             <div ref={linksRef} className="flex flex-col items-center gap-8 w-full">
               <div className="flex flex-wrap justify-center gap-4 w-full">
-                <MagneticButton as={Link} href="/courses" className="footer-glass-pill px-10 py-5 rounded-full text-[#E2C97E] font-bold text-sm md:text-base flex items-center gap-3 group uppercase tracking-widest">
+                <MagneticButton as={Link} href="/courses" className="footer-glass-pill px-10 py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group uppercase tracking-widest bg-white">
                   Explore Courses
                 </MagneticButton>
                 
-                <MagneticButton as={Link} href="/contact" className="footer-glass-pill px-10 py-5 rounded-full text-[#F5F0E8] font-bold text-sm md:text-base flex items-center gap-3 group uppercase tracking-widest">
+                <MagneticButton as={Link} href="/contact" className="footer-glass-pill px-10 py-5 rounded-full font-bold text-sm md:text-base flex items-center gap-3 group uppercase tracking-widest bg-white">
                   Contact Us
                 </MagneticButton>
               </div>
 
               {/* Secondary Links */}
               <div className="flex flex-wrap justify-center gap-4 md:gap-10 w-full mt-4 font-[family-name:var(--font-inter)]">
-                <Link href="/about" className="text-[#C8BFAD]/40 text-[11px] font-bold tracking-widest uppercase hover:text-[#C9A84C] transition-colors">
+                <Link href="/about" className="text-slate-400 text-[11px] font-bold tracking-widest uppercase hover:text-orange-600 transition-colors">
                   Our Mission
                 </Link>
-                <Link href="/courses/vedic-maths" className="text-[#C8BFAD]/40 text-[11px] font-bold tracking-widest uppercase hover:text-[#C9A84C] transition-colors">
+                <Link href="/courses/vedic-maths" className="text-slate-400 text-[11px] font-bold tracking-widest uppercase hover:text-orange-600 transition-colors">
                    Vedic Maths
                 </Link>
-                <Link href="/courses/yoga" className="text-[#C8BFAD]/40 text-[11px] font-bold tracking-widest uppercase hover:text-[#C9A84C] transition-colors">
+                <Link href="/courses/yoga" className="text-slate-400 text-[11px] font-bold tracking-widest uppercase hover:text-orange-600 transition-colors">
                    Yoga & Philosophy
                 </Link>
-                <Link href="/contact" className="text-[#C8BFAD]/40 text-[11px] font-bold tracking-widest uppercase hover:text-[#C9A84C] transition-colors">
+                <Link href="/contact" className="text-slate-400 text-[11px] font-bold tracking-widest uppercase hover:text-orange-600 transition-colors">
                    Support
                 </Link>
               </div>
@@ -348,22 +335,22 @@ export function CinematicFooter() {
           <div className="relative z-20 w-full pb-10 px-6 md:px-16 flex flex-col md:flex-row items-center justify-between gap-8">
             
             {/* Copyright */}
-            <div className="text-[#C8BFAD]/30 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase order-2 md:order-1 font-[family-name:var(--font-inter)]">
+            <div className="text-slate-400 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase order-2 md:order-1 font-[family-name:var(--font-inter)]">
               © {new Date().getFullYear()} SHRUTIVANAM. SANATANA DHARMA FOUNDATION.
             </div>
 
             {/* "Made with Love" Badge */}
-            <div className="footer-glass-pill px-8 py-3.5 rounded-full flex items-center gap-3 order-1 md:order-2 cursor-default border-white/5">
-              <span className="text-[#C8BFAD]/60 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Guided by</span>
-              <span className="animate-footer-heartbeat text-sm md:text-base text-red-500">ॐ</span>
-              <span className="text-[#C8BFAD]/60 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Wisdom</span>
+            <div className="footer-glass-pill px-8 py-3.5 rounded-full flex items-center gap-3 order-1 md:order-2 cursor-default border-slate-200 bg-white">
+              <span className="text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Guided by</span>
+              <span className="animate-footer-heartbeat text-sm md:text-base text-orange-600">ॐ</span>
+              <span className="text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Wisdom</span>
             </div>
 
             {/* Back to top */}
             <MagneticButton
               as="button"
               onClick={scrollToTop}
-              className="w-14 h-14 rounded-full footer-glass-pill flex items-center justify-center text-[#C9A84C] hover:text-[#E2C97E] group order-3"
+              className="w-14 h-14 rounded-full footer-glass-pill flex items-center justify-center text-slate-400 hover:text-orange-600 group order-3 bg-white"
             >
               <svg className="w-6 h-6 transform group-hover:-translate-y-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>

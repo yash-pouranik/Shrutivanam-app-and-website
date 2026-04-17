@@ -3,7 +3,6 @@ import { Cinzel, Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import MouseOrb from "@/components/MouseOrb";
 import Providers from "@/components/Providers";
 
 const cinzel = Cinzel({
@@ -61,13 +60,11 @@ export default function RootLayout({
       lang="en"
       className={`${cinzel.variable} ${cormorant.variable} ${inter.variable} h-full`}
     >
-      <body className="min-h-full bg-[#0d0b1e] text-[#F5F0E8] antialiased selection:bg-[#C9A84C]/30 selection:text-white">
+      <body className="min-h-full antialiased selection:bg-orange-500 selection:text-white">
         <Providers>
-          <MouseOrb />
           <Navbar />
           
-          {/* Main content wrapper for curtain reveal */}
-          <div className="relative z-10 bg-[#0d0b1e] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] border-b border-white/5">
+          <div className="relative z-10 bg-white">
             <main className="min-h-[calc(100vh-80px)] pt-24 md:pt-28">
               {children}
             </main>

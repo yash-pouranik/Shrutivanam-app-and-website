@@ -33,9 +33,9 @@ export default function DashboardVideosPage() {
   }, []);
 
   const typeIcon = (type: string) => {
-    if (type === "youtube") return <PlayCircle size={13} className="text-red-400" />;
-    if (type === "upload") return <Video size={13} className="text-[#C9A84C]" />;
-    return <Link2 size={13} className="text-blue-400" />;
+    if (type === "youtube") return <PlayCircle size={13} className="text-red-500" />;
+    if (type === "upload") return <Video size={13} className="text-orange-600" />;
+    return <Link2 size={13} className="text-blue-500" />;
   };
 
   const getEmbedUrl = (video: VideoItem): string | null => {
@@ -50,7 +50,7 @@ export default function DashboardVideosPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="w-8 h-8 rounded-full border-2 border-[#C9A84C] border-t-transparent animate-spin" />
+        <div className="w-8 h-8 rounded-full border-2 border-orange-500 border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -58,39 +58,26 @@ export default function DashboardVideosPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1
-          className="text-3xl font-bold text-[#F5F0E8] mb-1"
-          style={{ fontFamily: "var(--font-cinzel)" }}
-        >
+        <h1 className="text-3xl font-bold text-slate-900 mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
           Video Library
         </h1>
-        <p className="text-[#C8BFAD]/50 text-sm">{videos.length} lessons available</p>
+        <p className="text-slate-500 text-sm">{videos.length} lessons available</p>
       </div>
 
       {/* Player */}
       {activeVideo && (
-        <div className="mb-8">
-          <div
-            className="rounded-2xl overflow-hidden"
-            style={{ border: "1px solid rgba(201,168,76,0.3)" }}
-          >
+        <div className="mb-8 p-1 bg-white rounded-[20px] shadow-sm border border-slate-200">
+          <div className="rounded-2xl overflow-hidden border border-slate-100 relative">
             {activeVideo.type === "link" ? (
-              <div
-                className="p-8 text-center"
-                style={{ background: "rgba(26,16,64,0.8)" }}
-              >
-                <p className="text-[#C8BFAD]/70 mb-4 text-sm">
+              <div className="p-8 text-center bg-slate-50">
+                <p className="text-slate-500 mb-4 text-sm">
                   This video is hosted externally. Click below to open it.
                 </p>
                 <a
                   href={activeVideo.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold"
-                  style={{
-                    background: "linear-gradient(135deg, #C9A84C, #E2C97E)",
-                    color: "#0d0b1e",
-                  }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-orange-600 hover:bg-orange-700 text-white transition-colors"
                 >
                   <Play size={16} />
                   Open Video
@@ -105,23 +92,15 @@ export default function DashboardVideosPage() {
                 allowFullScreen
               />
             ) : (
-              <video
-                src={activeVideo.url}
-                controls
-                autoPlay
-                className="w-full aspect-video bg-black"
-              />
+              <video src={activeVideo.url} controls autoPlay className="w-full aspect-video bg-black" />
             )}
           </div>
-          <div className="mt-4">
-            <h2
-              className="text-xl font-bold text-[#F5F0E8]"
-              style={{ fontFamily: "var(--font-cinzel)" }}
-            >
+          <div className="p-4 mt-2">
+            <h2 className="text-xl font-bold text-slate-900" style={{ fontFamily: "var(--font-cinzel)" }}>
               {activeVideo.title}
             </h2>
             {activeVideo.description && (
-              <p className="text-[#C8BFAD]/60 text-sm mt-2">{activeVideo.description}</p>
+              <p className="text-slate-600 text-sm mt-2">{activeVideo.description}</p>
             )}
           </div>
         </div>
@@ -129,12 +108,9 @@ export default function DashboardVideosPage() {
 
       {/* Video Grid */}
       {videos.length === 0 ? (
-        <div
-          className="rounded-2xl p-12 text-center"
-          style={{ background: "rgba(26,16,64,0.5)", border: "1px solid rgba(201,168,76,0.15)" }}
-        >
-          <Video size={32} className="text-[#C9A84C]/40 mx-auto mb-3" />
-          <p className="text-[#C8BFAD]/40">No videos available yet. Check back soon!</p>
+        <div className="rounded-2xl p-12 text-center bg-white border border-slate-200 shadow-sm">
+          <Video size={32} className="text-slate-300 mx-auto mb-3" />
+          <p className="text-slate-400">No videos available yet. Check back soon!</p>
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -153,48 +129,25 @@ export default function DashboardVideosPage() {
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }
                 }}
-                className="text-left rounded-2xl overflow-hidden transition-all duration-200 hover:scale-[1.02]"
-                style={{
-                  background: "rgba(26,16,64,0.6)",
-                  border: isActive
-                    ? "1px solid rgba(201,168,76,0.5)"
-                    : "1px solid rgba(201,168,76,0.12)",
-                }}
+                className={`text-left rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-1 bg-white border shadow-sm ${
+                  isActive ? "border-orange-400 ring-4 ring-orange-50" : "border-slate-200 hover:border-orange-200 hover:shadow-md"
+                }`}
               >
                 {/* Thumbnail */}
                 <div
-                  className="w-full aspect-video flex items-center justify-center relative"
+                  className="w-full aspect-video flex items-center justify-center relative bg-slate-100"
                   style={{
-                    background: ytId
-                      ? `url(https://img.youtube.com/vi/${ytId}/mqdefault.jpg) center/cover`
-                      : "rgba(13,11,30,0.8)",
+                    background: ytId ? `url(https://img.youtube.com/vi/${ytId}/mqdefault.jpg) center/cover` : undefined,
                   }}
                 >
-                  {!ytId && (
-                    <div className="text-[#C9A84C]/50">{typeIcon(video.type)}</div>
-                  )}
-                  <div
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{ background: "rgba(0,0,0,0.3)" }}
-                  >
-                    <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
-                      style={{
-                        background: "rgba(201,168,76,0.9)",
-                        boxShadow: "0 4px 20px rgba(201,168,76,0.4)",
-                      }}
-                    >
-                      <Play size={18} fill="#0d0b1e" className="text-[#0d0b1e] ml-0.5" />
+                  {!ytId && <div className="text-slate-300">{typeIcon(video.type)}</div>}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white/90 backdrop-blur shadow-lg">
+                      <Play size={18} fill="currentColor" className="text-orange-600 ml-0.5" />
                     </div>
                   </div>
                   {isActive && (
-                    <div
-                      className="absolute top-2 right-2 text-xs px-2 py-1 rounded-full font-semibold"
-                      style={{
-                        background: "rgba(201,168,76,0.9)",
-                        color: "#0d0b1e",
-                      }}
-                    >
+                    <div className="absolute top-2 right-2 text-xs px-2.5 py-1 rounded-full font-bold bg-orange-600 text-white shadow-sm tracking-wide uppercase">
                       Now Playing
                     </div>
                   )}
@@ -202,17 +155,15 @@ export default function DashboardVideosPage() {
 
                 {/* Info */}
                 <div className="p-4">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1.5">
                     {typeIcon(video.type)}
-                    <span className="text-[#C8BFAD]/40 text-xs capitalize">{video.type}</span>
+                    <span className="text-slate-500 text-xs capitalize font-semibold tracking-wide">
+                      {video.type}
+                    </span>
                   </div>
-                  <p className="text-[#F5F0E8] font-semibold text-sm leading-snug">
-                    {video.title}
-                  </p>
+                  <p className="text-slate-900 font-bold text-sm leading-snug">{video.title}</p>
                   {video.description && (
-                    <p className="text-[#C8BFAD]/50 text-xs mt-1.5 line-clamp-2">
-                      {video.description}
-                    </p>
+                    <p className="text-slate-500 text-xs mt-1.5 line-clamp-2">{video.description}</p>
                   )}
                 </div>
               </button>

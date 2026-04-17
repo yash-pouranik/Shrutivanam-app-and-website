@@ -15,15 +15,13 @@ interface VideoItem {
 }
 
 const typeIcon = (type: string) => {
-  if (type === "youtube") return <PlayCircle size={14} className="text-red-400" />;
-  if (type === "upload") return <Video size={14} className="text-[#C9A84C]" />;
-  return <Link2 size={14} className="text-blue-400" />;
+  if (type === "youtube") return <PlayCircle size={14} className="text-red-500" />;
+  if (type === "upload") return <Video size={14} className="text-orange-600" />;
+  return <Link2 size={14} className="text-blue-500" />;
 };
 
-const inputStyle = {
-  background: "rgba(13, 11, 30, 0.6)",
-  border: "1px solid rgba(201, 168, 76, 0.2)",
-};
+const inputClass =
+  "w-full px-4 py-3 rounded-xl text-sm text-slate-900 placeholder-slate-400 outline-none bg-slate-50 border border-slate-200 focus:border-orange-300 focus:ring-2 focus:ring-orange-100 transition-colors";
 
 export default function AdminVideosPage() {
   const [videos, setVideos] = useState<VideoItem[]>([]);
@@ -58,7 +56,6 @@ export default function AdminVideosPage() {
   const uploadToCloudinary = async (): Promise<string> => {
     if (!file) throw new Error("No file selected");
 
-    // Get signed params from server
     const sigRes = await fetch("/api/upload");
     const { timestamp, signature, apiKey, cloudName, folder } = await sigRes.json();
 
@@ -129,22 +126,15 @@ export default function AdminVideosPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1
-            className="text-3xl font-bold text-[#F5F0E8] mb-1"
-            style={{ fontFamily: "var(--font-cinzel)" }}
-          >
+          <h1 className="text-3xl font-bold text-slate-900 mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
             Videos
           </h1>
-          <p className="text-[#C8BFAD]/50 text-sm">{videos.length} videos available</p>
+          <p className="text-slate-500 text-sm">{videos.length} videos available</p>
         </div>
         <button
           onClick={() => setShowForm((p) => !p)}
           id="add-video-btn"
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold"
-          style={{
-            background: "linear-gradient(135deg, #C9A84C, #E2C97E)",
-            color: "#0d0b1e",
-          }}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-orange-600 hover:bg-orange-700 text-white transition-colors"
         >
           {showForm ? <X size={16} /> : <Plus size={16} />}
           {showForm ? "Cancel" : "Add Video"}
@@ -153,86 +143,45 @@ export default function AdminVideosPage() {
 
       {/* Add Form */}
       {showForm && (
-        <div
-          className="rounded-2xl p-6 mb-6"
-          style={{
-            background: "rgba(26,16,64,0.7)",
-            border: "1px solid rgba(201,168,76,0.25)",
-          }}
-        >
-          <h2 className="text-[#E2C97E] font-semibold mb-5 text-sm uppercase tracking-widest">
+        <div className="rounded-2xl p-6 mb-6 bg-white border border-slate-200 shadow-sm">
+          <h2 className="text-slate-900 font-semibold mb-5 text-sm uppercase tracking-widest">
             Add New Video
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2">
-                  Title *
-                </label>
-                <input
-                  required
-                  type="text"
-                  value={form.title}
-                  onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
-                  placeholder="Video title"
-                  className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F0E8] placeholder-[#C8BFAD]/30 outline-none"
-                  style={inputStyle}
-                />
+                <label className="block text-xs font-semibold tracking-widest text-slate-600 uppercase mb-2">Title *</label>
+                <input required type="text" value={form.title} onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))} placeholder="Video title" className={inputClass} />
               </div>
               <div>
-                <label className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2">
-                  Order
-                </label>
-                <input
-                  type="number"
-                  value={form.order}
-                  onChange={(e) => setForm((p) => ({ ...p, order: Number(e.target.value) }))}
-                  min={0}
-                  className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F0E8] outline-none"
-                  style={inputStyle}
-                />
+                <label className="block text-xs font-semibold tracking-widest text-slate-600 uppercase mb-2">Order</label>
+                <input type="number" value={form.order} onChange={(e) => setForm((p) => ({ ...p, order: Number(e.target.value) }))} min={0} className={inputClass} />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2">
-                Description
-              </label>
-              <textarea
-                value={form.description}
-                onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))}
-                rows={2}
-                placeholder="Brief description..."
-                className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F0E8] placeholder-[#C8BFAD]/30 outline-none resize-none"
-                style={inputStyle}
-              />
+              <label className="block text-xs font-semibold tracking-widest text-slate-600 uppercase mb-2">Description</label>
+              <textarea value={form.description} onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))} rows={2} placeholder="Brief description..." className={`${inputClass} resize-none`} />
             </div>
 
             {/* Type selector */}
             <div>
-              <label className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2">
-                Video Source *
-              </label>
+              <label className="block text-xs font-semibold tracking-widest text-slate-600 uppercase mb-2">Video Source *</label>
               <div className="flex gap-3">
                 {(["youtube", "link", "upload"] as const).map((t) => (
                   <button
                     key={t}
                     type="button"
                     onClick={() => setForm((p) => ({ ...p, type: t }))}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold capitalize transition-all"
-                    style={{
-                      background: form.type === t
-                        ? "linear-gradient(135deg, rgba(201,168,76,0.2), rgba(31,21,88,0.5))"
-                        : "rgba(13,11,30,0.6)",
-                      color: form.type === t ? "#E2C97E" : "rgba(200,191,173,0.5)",
-                      border: form.type === t
-                        ? "1px solid rgba(201,168,76,0.4)"
-                        : "1px solid rgba(201,168,76,0.15)",
-                    }}
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold capitalize transition-all border ${
+                      form.type === t
+                        ? "bg-orange-50 border-orange-200 text-orange-700 shadow-sm"
+                        : "bg-white border-slate-200 text-slate-500 hover:bg-slate-50"
+                    }`}
                   >
-                    {t === "youtube" && <PlayCircle size={13} />}
-                    {t === "link" && <Link2 size={13} />}
-                    {t === "upload" && <Video size={13} />}
+                    {t === "youtube" && <PlayCircle size={13} className={form.type === t ? "text-red-500" : ""} />}
+                    {t === "link" && <Link2 size={13} className={form.type === t ? "text-blue-500" : ""} />}
+                    {t === "upload" && <Video size={13} className={form.type === t ? "text-orange-600" : ""} />}
                     {t === "youtube" ? "YouTube" : t === "link" ? "External Link" : "Upload File"}
                   </button>
                 ))}
@@ -242,52 +191,26 @@ export default function AdminVideosPage() {
             {/* URL or File input */}
             {form.type === "upload" ? (
               <div>
-                <label className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2">
-                  Video File *
-                </label>
+                <label className="block text-xs font-semibold tracking-widest text-slate-600 uppercase mb-2">Video File *</label>
                 <input
                   type="file"
                   accept="video/*"
                   onChange={handleFileChange}
                   required
-                  className="w-full text-sm text-[#C8BFAD]/70 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:text-[#0d0b1e] file:cursor-pointer"
-                  style={{
-                    ...inputStyle,
-                    padding: "10px 16px",
-                    borderRadius: "12px",
-                    ["--file-bg" as string]: "rgba(201,168,76,1)",
-                  }}
+                  className="w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200 file:cursor-pointer p-2.5 bg-slate-50 border border-slate-200 rounded-xl"
                 />
                 {uploadProgress > 0 && uploadProgress < 100 && (
-                  <div className="mt-2 h-1.5 rounded-full overflow-hidden bg-[rgba(201,168,76,0.1)]">
-                    <div
-                      className="h-full rounded-full transition-all"
-                      style={{
-                        width: `${uploadProgress}%`,
-                        background: "linear-gradient(90deg, #C9A84C, #E2C97E)",
-                      }}
-                    />
+                  <div className="mt-2 h-1.5 rounded-full overflow-hidden bg-slate-100">
+                    <div className="h-full rounded-full transition-all bg-orange-500" style={{ width: `${uploadProgress}%` }} />
                   </div>
                 )}
               </div>
             ) : (
               <div>
-                <label className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2">
+                <label className="block text-xs font-semibold tracking-widest text-slate-600 uppercase mb-2">
                   {form.type === "youtube" ? "YouTube URL *" : "Video URL *"}
                 </label>
-                <input
-                  required
-                  type="url"
-                  value={form.url}
-                  onChange={(e) => setForm((p) => ({ ...p, url: e.target.value }))}
-                  placeholder={
-                    form.type === "youtube"
-                      ? "https://youtube.com/watch?v=..."
-                      : "https://..."
-                  }
-                  className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F0E8] placeholder-[#C8BFAD]/30 outline-none"
-                  style={inputStyle}
-                />
+                <input required type="url" value={form.url} onChange={(e) => setForm((p) => ({ ...p, url: e.target.value }))} placeholder={form.type === "youtube" ? "https://youtube.com/watch?v=..." : "https://..."} className={inputClass} />
               </div>
             )}
 
@@ -295,19 +218,10 @@ export default function AdminVideosPage() {
               type="submit"
               disabled={saving}
               id="save-video-btn"
-              className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold"
-              style={{
-                background: "linear-gradient(135deg, #C9A84C, #E2C97E)",
-                color: "#0d0b1e",
-                opacity: saving ? 0.7 : 1,
-              }}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-orange-600 hover:bg-orange-700 disabled:bg-orange-300 text-white transition-colors"
             >
               {saving ? <Loader2 size={14} className="animate-spin" /> : <Plus size={14} />}
-              {saving
-                ? form.type === "upload"
-                  ? `Uploading ${uploadProgress}%…`
-                  : "Saving…"
-                : "Save Video"}
+              {saving ? (form.type === "upload" ? `Uploading ${uploadProgress}%…` : "Saving…") : "Save Video"}
             </button>
           </form>
         </div>
@@ -316,63 +230,33 @@ export default function AdminVideosPage() {
       {/* Video List */}
       {loading ? (
         <div className="flex items-center justify-center h-40">
-          <div className="w-8 h-8 rounded-full border-2 border-[#C9A84C] border-t-transparent animate-spin" />
+          <div className="w-8 h-8 rounded-full border-2 border-orange-500 border-t-transparent animate-spin" />
         </div>
       ) : videos.length === 0 ? (
-        <div
-          className="rounded-2xl p-12 text-center"
-          style={{ background: "rgba(26,16,64,0.5)", border: "1px solid rgba(201,168,76,0.15)" }}
-        >
-          <Video size={32} className="text-[#C9A84C]/40 mx-auto mb-3" />
-          <p className="text-[#C8BFAD]/40">No videos added yet.</p>
+        <div className="rounded-2xl p-12 text-center bg-white border border-slate-200 shadow-sm">
+          <Video size={32} className="text-slate-300 mx-auto mb-3" />
+          <p className="text-slate-400">No videos added yet.</p>
         </div>
       ) : (
         <div className="space-y-3">
           {videos.map((video) => (
-            <div
-              key={video._id}
-              className="rounded-2xl p-5 flex items-center gap-4"
-              style={{
-                background: "rgba(26,16,64,0.6)",
-                border: "1px solid rgba(201,168,76,0.12)",
-              }}
-            >
-              <GripVertical size={16} className="text-[#C8BFAD]/20 flex-shrink-0" />
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: "rgba(201,168,76,0.1)",
-                  border: "1px solid rgba(201,168,76,0.2)",
-                }}
-              >
+            <div key={video._id} className="rounded-2xl p-5 flex items-center gap-4 bg-white border border-slate-200 shadow-sm">
+              <GripVertical size={16} className="text-slate-300 flex-shrink-0" />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-slate-50 border border-slate-100">
                 {typeIcon(video.type)}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[#F5F0E8] font-semibold text-sm truncate">{video.title}</p>
+                <p className="text-slate-900 font-semibold text-sm truncate">{video.title}</p>
                 {video.description && (
-                  <p className="text-[#C8BFAD]/40 text-xs mt-0.5 truncate">{video.description}</p>
+                  <p className="text-slate-500 text-xs mt-0.5 truncate">{video.description}</p>
                 )}
-                <p className="text-[#C8BFAD]/30 text-xs mt-1 capitalize">{video.type} · Order: {video.order}</p>
+                <p className="text-slate-400 text-xs mt-1 capitalize">{video.type} · Order: {video.order}</p>
               </div>
-              <a
-                href={video.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-[#C9A84C] hover:text-[#E2C97E] underline underline-offset-2 flex-shrink-0"
-              >
+              <a href={video.url} target="_blank" rel="noopener noreferrer" className="text-xs text-orange-600 hover:text-orange-700 font-semibold underline underline-offset-2 flex-shrink-0">
                 Preview
               </a>
-              <button
-                onClick={() => handleDelete(video._id)}
-                disabled={deletingId === video._id}
-                className="p-2 rounded-xl flex-shrink-0 transition-colors hover:bg-red-500/10"
-                style={{ color: "rgba(248,113,113,0.5)" }}
-              >
-                {deletingId === video._id ? (
-                  <Loader2 size={14} className="animate-spin" />
-                ) : (
-                  <Trash2 size={14} />
-                )}
+              <button onClick={() => handleDelete(video._id)} disabled={deletingId === video._id} className="p-2 rounded-xl flex-shrink-0 transition-colors hover:bg-red-50 text-red-400 hover:text-red-600">
+                {deletingId === video._id ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
               </button>
             </div>
           ))}

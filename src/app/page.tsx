@@ -51,32 +51,16 @@ export default function HomePage() {
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────────── */}
-      <section className="hero-gradient relative pt-12 pb-16 md:pt-16 md:pb-20 flex items-center justify-center overflow-hidden">
-        {/* Decorative circles */}
-        <div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)",
-            border: "1px solid rgba(201,168,76,0.05)",
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full pointer-events-none"
-          style={{
-            border: "1px solid rgba(201,168,76,0.03)",
-          }}
-        />
-
+      <section className="bg-slate-50 relative pt-12 pb-16 md:pt-16 md:pb-20 flex items-center justify-center overflow-hidden border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 flex flex-col items-center">
           {/* Heading */}
           <h1 className="font-[family-name:var(--font-cinzel)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up animate-delay-200 leading-tight">
-            <span className="gold-shimmer">Ancient Wisdom.</span>
+            <span className="text-orange-600">Ancient Wisdom.</span>
             <br />
-            <span className="text-[#F5F0E8]">Modern Path.</span>
+            <span className="text-slate-900">Modern Path.</span>
           </h1>
 
-          <p className="text-[#C8BFAD]/80 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed animate-fade-in-up animate-delay-400">
+          <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed animate-fade-in-up animate-delay-400">
             A space for sincere learning. We offer structured courses in Vedic Mathematics, Yoga, Sanskrit, and Indian Philosophy.
           </p>
 
@@ -85,10 +69,10 @@ export default function HomePage() {
             <Link
               href="/courses"
               id="hero-explore-courses"
-              className="btn-primary px-8 py-4 rounded-full text-base font-semibold tracking-wide inline-flex items-center gap-2"
+              className="btn-primary px-8 py-4 rounded-full text-base font-semibold tracking-wide inline-flex items-center gap-2 shadow-sm"
             >
               <span>Explore Courses</span>
-              <span className="font-[family-name:var(--font-cormorant)] text-sm">
+              <span className="font-[family-name:var(--font-cormorant)] text-sm opacity-90">
                 / कोर्स देखें
               </span>
               <ArrowRight size={18} />
@@ -96,22 +80,16 @@ export default function HomePage() {
             <Link
               href="/about"
               id="hero-about-link"
-              className="btn-outline px-8 py-4 rounded-full text-base font-semibold tracking-wide"
+              className="btn-outline px-8 py-4 rounded-full text-base font-semibold tracking-wide bg-white"
             >
               Our Story
             </Link>
           </div>
 
           {/* Scroll indicator */}
-          <div className="mt-20 flex flex-col items-center gap-2 opacity-40 animate-fade-in animate-delay-600">
-            <div
-              className="w-px h-12"
-              style={{
-                background:
-                  "linear-gradient(180deg, transparent, #C9A84C, transparent)",
-              }}
-            />
-            <p className="text-xs tracking-widest text-[#C9A84C] uppercase">
+          <div className="mt-20 flex flex-col items-center gap-2 opacity-60 animate-fade-in animate-delay-600">
+            <div className="w-px h-12 bg-gradient-to-b from-transparent via-slate-400 to-transparent" />
+            <p className="text-xs tracking-widest text-slate-500 uppercase font-semibold">
               Scroll
             </p>
           </div>
@@ -119,26 +97,26 @@ export default function HomePage() {
       </section>
 
       {/* ─── ABOUT SNIPPET ────────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-ambient-indigo border-t border-[rgba(201,168,76,0.1)]">
+      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <FadeIn direction="right">
-              <p className="text-[#C9A84C] text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
+              <p className="text-orange-600 text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
                 हमारे बारे में · About Us
               </p>
-              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-[#F5F0E8] mb-4 leading-tight">
-                Tradition for the <span className="gold-shimmer">Modern Mind</span>
+              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-slate-900 mb-4 leading-tight">
+                Tradition for the <span className="text-orange-600">Modern Mind</span>
               </h2>
-              <p className="text-[#C8BFAD]/80 text-sm md:text-base leading-relaxed mb-4">
+              <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-4">
                 Shrutivanam (&ldquo;forest of sound&rdquo;) is a platform built to pass on traditional Indian knowledge without the fluff. We focus on the original texts and practices.
               </p>
-              <p className="text-[#C8BFAD]/80 text-sm md:text-base leading-relaxed mb-8">
+              <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-8">
                 Our classes are taught by practitioners who also have strong academic backgrounds, ensuring the material is grounded, practical, and highly accurate.
               </p>
               <Link
                 href="/about"
                 id="about-read-more"
-                className="btn-outline px-6 py-2 rounded-full text-xs font-semibold tracking-wider inline-flex items-center gap-2"
+                className="btn-outline px-6 py-2 rounded-full text-xs font-semibold tracking-wider inline-flex items-center gap-2 hover:bg-slate-50"
               >
                 Read More
                 <ArrowRight size={14} />
@@ -146,20 +124,18 @@ export default function HomePage() {
             </FadeIn>
             <FadeIn direction="left" delay={0.2} className="relative">
               {/* Decorative stacked quote */}
-              <div
-                className="glass-card rounded-2xl p-6 text-center relative"
-              >
-                <p className="font-[family-name:var(--font-cormorant)] text-4xl text-[#C9A84C]/20 mb-2 leading-none">
+              <div className="bg-amber-50/50 border border-amber-100 rounded-2xl p-6 text-center shadow-sm">
+                <p className="font-[family-name:var(--font-cormorant)] text-4xl text-amber-200 mb-2 leading-none">
                   &ldquo;
                 </p>
-                <p className="font-[family-name:var(--font-cormorant)] text-xl italic text-[#E2C97E] mb-2">
+                <p className="font-[family-name:var(--font-cormorant)] text-xl italic text-amber-700 mb-2">
                   तमसो मा ज्योतिर्गमय
                 </p>
-                <p className="text-[#C8BFAD]/60 text-xs tracking-wide">
+                <p className="text-amber-700/80 text-xs tracking-wide font-semibold">
                   Lead me from darkness to light
                 </p>
-                <div className="gold-divider mt-4 mb-3" />
-                <p className="text-[#C8BFAD]/50 text-[10px] tracking-widest uppercase">
+                <div className="h-px bg-amber-200 my-4" />
+                <p className="text-amber-600/70 text-[10px] tracking-widest uppercase font-bold">
                   Brihadaranyaka Upanishad
                 </p>
               </div>
@@ -169,17 +145,17 @@ export default function HomePage() {
       </section>
 
       {/* ─── COURSES PREVIEW ──────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-ambient-gold border-t border-[rgba(201,168,76,0.1)] relative">
+      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-slate-50 border-b border-slate-100 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeIn direction="up">
             <div className="text-center mb-8">
-              <p className="text-[#C9A84C] text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
+              <p className="text-orange-600 text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
                 हमारे कोर्स · Our Courses
               </p>
-              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-[#F5F0E8] mb-3">
+              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-slate-900 mb-3">
                 Core Subjects
               </h2>
-              <p className="text-[#C8BFAD]/70 max-w-lg mx-auto text-sm">
+              <p className="text-slate-600 max-w-lg mx-auto text-sm">
                 Four foundational subjects, deeply researched and structured for clarity.
               </p>
             </div>
@@ -199,7 +175,7 @@ export default function HomePage() {
               <Link
                 href="/courses"
                 id="courses-view-all"
-                className="btn-outline px-8 py-3 rounded-full text-sm font-semibold tracking-wider inline-flex items-center gap-2"
+                className="btn-outline px-8 py-3 rounded-full text-sm font-semibold tracking-wider inline-flex items-center gap-2 bg-white"
               >
                 View All Courses
                 <ArrowRight size={16} />
@@ -210,14 +186,14 @@ export default function HomePage() {
       </section>
 
       {/* ─── WHY SHRUTIVANAM ─────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-ambient-dark border-t border-[rgba(201,168,76,0.15)] shadow-[inset_0_20px_40px_rgba(0,0,0,0.5)]">
+      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeIn direction="up">
             <div className="text-center mb-8">
-              <p className="text-[#C9A84C] text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
+              <p className="text-orange-600 text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
                 विशेषता · Why Choose Us
               </p>
-              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-[#F5F0E8]">
+              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-slate-900">
                 Why Look Here?
               </h2>
             </div>
@@ -228,26 +204,17 @@ export default function HomePage() {
               const Icon = point.icon;
               return (
                 <FadeIn key={i} delay={i * 0.15} direction="up" className="h-full">
-                  <div
-                    className="glass-card rounded-2xl p-6 text-center hover:border-[rgba(201,168,76,0.35)] transition-all duration-300 hover:-translate-y-1 h-full"
-                  >
-                    <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(201,168,76,0.15) 0%, rgba(31,21,88,0.4) 100%)",
-                        border: "1px solid rgba(201, 168, 76, 0.25)",
-                      }}
-                    >
-                      <Icon size={24} className="text-[#C9A84C]" />
+                  <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 text-center hover:border-orange-200 hover:bg-orange-50/30 transition-colors duration-300 h-full shadow-sm">
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5 bg-orange-100 text-orange-600">
+                      <Icon size={24} />
                     </div>
-                    <h3 className="font-[family-name:var(--font-cinzel)] font-semibold text-[#F5F0E8] mb-1 text-sm md:text-base">
+                    <h3 className="font-[family-name:var(--font-cinzel)] font-bold text-slate-900 mb-1 text-sm md:text-base">
                       {point.title}
                     </h3>
-                    <p className="text-[#C9A84C]/60 text-xs italic font-[family-name:var(--font-cormorant)] mb-2">
+                    <p className="text-orange-600 text-xs italic font-[family-name:var(--font-cormorant)] mb-2 font-semibold">
                       {point.titleHi}
                     </p>
-                    <p className="text-[#C8BFAD]/70 text-xs leading-relaxed">
+                    <p className="text-slate-600 text-xs leading-relaxed">
                       {point.desc}
                     </p>
                   </div>
@@ -259,17 +226,17 @@ export default function HomePage() {
       </section>
 
       {/* ─── TEACHERS PREVIEW ────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-ambient-indigo border-t border-[rgba(201,168,76,0.1)]">
+      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-slate-50 border-b border-slate-100">
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeIn direction="up">
             <div className="text-center mb-8">
-              <p className="text-[#C9A84C] text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
+              <p className="text-orange-600 text-xs font-semibold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
                 हमारे गुरु · Our Teachers
               </p>
-              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-[#F5F0E8] mb-2">
+              <h2 className="font-[family-name:var(--font-cinzel)] text-2xl md:text-3xl font-bold text-slate-900 mb-2">
                 Learn from the Best
               </h2>
-              <p className="text-[#C8BFAD]/70 max-w-lg mx-auto text-sm">
+              <p className="text-slate-600 max-w-lg mx-auto text-sm">
                 Scholars who bring academic rigor to traditional systems.
               </p>
             </div>
@@ -288,7 +255,7 @@ export default function HomePage() {
               <Link
                 href="/about#teachers"
                 id="teachers-view-all"
-                className="btn-outline px-8 py-3 rounded-full text-sm font-semibold tracking-wider inline-flex items-center gap-2"
+                className="btn-outline px-8 py-3 rounded-full text-sm font-semibold tracking-wider inline-flex items-center gap-2 bg-white"
               >
                 Meet All Teachers
                 <ArrowRight size={16} />
