@@ -4,12 +4,22 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import { Menu, X, LayoutDashboard, Shield, LogOut, Users, Video, CalendarDays } from "lucide-react";
+import {
+  CalendarDays,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  Shield,
+  Users,
+  Video,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 
 interface NavLink {
   href: string;
   label: string;
-  icon?: any;
+  icon?: LucideIcon;
 }
 
 // Link Configurations

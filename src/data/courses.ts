@@ -31,7 +31,7 @@ export const courses: Course[] = [
     teacher: "Priyansh Dwivedi",
     teacherSlug: "priyansh",
     icon: "🧮",
-    color: "from-gold-light/20 to-indigo-mid/40",
+    color: "from-orange-100 to-orange-200",
     modules: [
       { title: "Introduction to Vedic Sutras" },
       { title: "Fast Addition & Subtraction" },
@@ -60,7 +60,7 @@ export const courses: Course[] = [
     teacher: "Deepak Gupta",
     teacherSlug: "deepak",
     icon: "🧘",
-    color: "from-purple-500/20 to-indigo-mid/40",
+    color: "from-indigo-100 to-indigo-200",
     modules: [
       { title: "Foundations of Yoga Philosophy" },
       { title: "Asanas — Body as Temple" },
@@ -89,7 +89,7 @@ export const courses: Course[] = [
     teacher: "Atul",
     teacherSlug: "atul",
     icon: "📜",
-    color: "from-amber-500/20 to-indigo-mid/40",
+    color: "from-amber-100 to-amber-200",
     modules: [
       { title: "Devanagari Script — Reading & Writing" },
       { title: "Grammar Essentials — Sandhi & Vibhakti" },
@@ -118,7 +118,7 @@ export const courses: Course[] = [
     teacher: "Priyanka Gherani",
     teacherSlug: "priyanka",
     icon: "🕉️",
-    color: "from-rose-500/20 to-indigo-mid/40",
+    color: "from-rose-100 to-rose-200",
     modules: [
       { title: "Nature of the Self — Atman vs. Body" },
       { title: "The Law of Karma" },

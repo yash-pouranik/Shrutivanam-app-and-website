@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock, BarChart2, ArrowRight } from "lucide-react";
+import { ArrowRight, BarChart2, Clock } from "lucide-react";
 import type { Course } from "@/data/courses";
 
 interface CourseCardProps {
@@ -11,74 +11,65 @@ export default function CourseCard({ course, featured = false }: CourseCardProps
   return (
     <Link
       href={`/courses/${course.slug}`}
-      className={`group glass-card rounded-2xl p-6 flex flex-col gap-4 hover:border-[rgba(201,168,76,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(0,0,0,0.4)] ${
+      aria-label={`Learn more about ${course.title.en}`}
+      className={`group h-full flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-orange-100 ${
         featured ? "lg:p-8" : ""
       }`}
-      aria-label={`Learn more about ${course.title.en}`}
     >
       {/* Icon + Badge */}
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between gap-4">
         <div
-          className={`flex items-center justify-center rounded-xl bg-gradient-to-br ${course.color} text-3xl ${
+          className={`flex items-center justify-center rounded-xl bg-gradient-to-br ${course.color} text-3xl ring-1 ring-slate-200/70 ${
             featured ? "w-16 h-16" : "w-12 h-12"
           }`}
-          style={{ border: "1px solid rgba(201,168,76,0.2)" }}
         >
           {course.icon}
         </div>
-        <span
-          className="text-[10px] font-semibold tracking-widest uppercase px-3 py-1 rounded-full"
-          style={{
-            background: "rgba(201, 168, 76, 0.1)",
-            border: "1px solid rgba(201, 168, 76, 0.3)",
-            color: "#C9A84C",
-          }}
-        >
+        <span className="text-[10px] font-semibold tracking-widest uppercase px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-600">
           {course.level}
         </span>
       </div>
 
       {/* Title */}
-      <div>
+      <div className="mt-4">
         <h3
-          className={`font-[family-name:var(--font-cinzel)] font-semibold text-[#F5F0E8] group-hover:text-[#E2C97E] transition-colors duration-300 ${
+          className={`font-[family-name:var(--font-cinzel)] font-semibold text-slate-900 group-hover:text-orange-700 transition-colors ${
             featured ? "text-xl mb-1" : "text-base mb-1"
           }`}
         >
           {course.title.en}
         </h3>
-        <p className="text-[#C9A84C]/70 text-xs font-[family-name:var(--font-cormorant)] italic tracking-wide">
+        <p className="text-slate-500 text-xs font-[family-name:var(--font-cormorant)] italic tracking-wide">
           {course.title.hi}
         </p>
       </div>
 
       {/* Description */}
-      <p className="text-[#C8BFAD]/80 text-sm leading-relaxed line-clamp-3">
+      <p className="mt-3 text-slate-600 text-sm leading-relaxed line-clamp-3">
         {course.description}
       </p>
 
       {/* Meta */}
-      <div className="flex items-center gap-4 text-xs text-[#C8BFAD]/60 mt-auto">
+      <div className="mt-4 flex items-center gap-4 text-xs text-slate-500">
         <span className="flex items-center gap-1.5">
-          <Clock size={12} className="text-[#C9A84C]/60" />
+          <Clock size={12} className="text-orange-600/70" />
           {course.duration}
         </span>
         <span className="flex items-center gap-1.5">
-          <BarChart2 size={12} className="text-[#C9A84C]/60" />
+          <BarChart2 size={12} className="text-orange-600/70" />
           {course.level}
         </span>
       </div>
 
       {/* CTA */}
-      <div
-        className="flex items-center gap-2 text-sm font-semibold text-[#C9A84C] group-hover:text-[#E2C97E] transition-colors duration-300 pt-2 border-t"
-        style={{ borderColor: "rgba(201, 168, 76, 0.1)" }}
-      >
-        <span>Learn More</span>
-        <ArrowRight
-          size={16}
-          className="transform group-hover:translate-x-1 transition-transform duration-300"
-        />
+      <div className="mt-auto pt-5">
+        <div className="flex items-center gap-2 text-sm font-semibold text-orange-700 pt-3 border-t border-slate-100">
+          <span>Learn More</span>
+          <ArrowRight
+            size={16}
+            className="transform group-hover:translate-x-1 transition-transform duration-200"
+          />
+        </div>
       </div>
     </Link>
   );

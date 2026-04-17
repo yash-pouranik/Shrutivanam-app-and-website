@@ -137,7 +137,7 @@ export default async function CourseDetailPage({
                   Course Highlights
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-4">
-                  {course.Highlights && course.highlights.map((highlight, i) => (
+                  {course.highlights?.length > 0 && course.highlights.map((highlight, i) => (
                     <div
                       key={i}
                       className="bg-white border border-slate-200 rounded-xl p-4 flex items-start gap-3 shadow-sm"

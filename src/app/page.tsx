@@ -161,10 +161,10 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          {/* Mobile: horizontal scroll; Desktop: grid */}
-          <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0 scrollbar-none">
+          {/* Stable responsive grid (avoids flex+scroll layout glitches) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {courses.map((course, i) => (
-              <FadeIn key={course.slug} delay={i * 0.1} direction="up" className="min-w-[280px] snap-start md:min-w-0">
+              <FadeIn key={course.slug} delay={i * 0.1} direction="up" className="h-full">
                 <CourseCard course={course} />
               </FadeIn>
             ))}
