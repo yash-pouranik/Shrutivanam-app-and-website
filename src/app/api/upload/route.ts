@@ -5,7 +5,7 @@ import { generateSignedParams } from "@/lib/cloudinary";
 // GET /api/upload — Return signed params for direct client-side upload
 export async function GET() {
   const session = await auth();
-  if (!session || session.user.role !== "admin") {
+  if (!session || session.user.role?.toLowerCase() !== "admin") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

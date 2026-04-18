@@ -190,7 +190,7 @@ export default function AdminVideosPage() {
 
             {/* URL or File input */}
             {form.type === "upload" ? (
-              <div>
+              <div key="upload-input">
                 <label className="block text-xs font-semibold tracking-widest text-slate-600 uppercase mb-2">Video File *</label>
                 <input
                   type="file"
@@ -206,7 +206,7 @@ export default function AdminVideosPage() {
                 )}
               </div>
             ) : (
-              <div>
+              <div key="url-input">
                 <label className="block text-xs font-semibold tracking-widest text-slate-600 uppercase mb-2">
                   {form.type === "youtube" ? "YouTube URL *" : "Video URL *"}
                 </label>
