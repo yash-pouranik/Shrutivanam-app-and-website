@@ -128,23 +128,23 @@ export default function AboutPage() {
               हमारे गुरु · Our Teachers
             </p>
             <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-4">
-              The Faces Behind the Knowledge
+              Learn from Highly Qualified Teachers
             </h2>
             <p className="text-[#635A56] text-xl font-medium max-w-2xl mx-auto opacity-80">
-              Each of our teachers has walked the dual path of rigorous academic
-              training and sincere spiritual practice — a rare combination.
+              Learn from teachers graduated from leading institutes and seasoned in
+              authentic Vedic traditions.
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto">
             <div className="rounded-3xl bg-white border border-[#EBDBCD] shadow-sm p-8">
               <p className="text-[#3B2E2A] text-xs font-black uppercase tracking-widest mb-6">
-                Faculty Designations
+                Faculty Backgrounds
               </p>
               <ul className="space-y-3">
-                {teachers.map((teacher) => (
-                  <li key={teacher.slug} className="text-[#635A56] text-sm md:text-base font-semibold">
-                    <span className="text-[#3B2E2A]">{teacher.name}</span> — {teacher.credentials}
+                {Array.from(new Set(teachers.map((teacher) => teacher.credentials))).map((credential) => (
+                  <li key={credential} className="text-[#635A56] text-sm md:text-base font-semibold">
+                    {credential}
                   </li>
                 ))}
               </ul>

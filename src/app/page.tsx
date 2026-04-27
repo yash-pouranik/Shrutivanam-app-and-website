@@ -8,7 +8,6 @@ import {
 import { courses } from "@/data/courses";
 import { teachers } from "@/data/teachers";
 import CourseCard from "@/components/CourseCard";
-import TeacherCard from "@/components/TeacherCard";
 import WhatsAppStrip from "@/components/WhatsAppStrip";
 import FadeIn from "@/components/FadeIn";
 
@@ -269,16 +268,25 @@ export default function HomePage() {
             <div className="text-center mb-16">
               <p className="text-[#FF7F32] font-black uppercase tracking-widest text-sm mb-4">Our Gurus</p>
               <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-4">Learn from the Best</h2>
-              <p className="text-[#635A56] text-lg font-medium">Scholars who bring academic rigor to traditional systems.</p>
+              <p className="text-[#635A56] text-lg font-medium">
+                Learn from teachers graduated from leading institutes and rooted in authentic Vedic traditions.
+              </p>
             </div>
           </FadeIn>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teachers.map((teacher, i) => (
-              <FadeIn key={teacher.slug} delay={i * 0.15} direction="up">
-                <TeacherCard teacher={teacher} />
-              </FadeIn>
-            ))}
+          <div className="max-w-3xl mx-auto">
+            <div className="rounded-3xl bg-white border border-[#EBDBCD] shadow-sm p-8">
+              <p className="text-[#3B2E2A] text-xs font-black uppercase tracking-widest mb-6">
+                Faculty Backgrounds
+              </p>
+              <ul className="space-y-3">
+                {Array.from(new Set(teachers.map((teacher) => teacher.credentials))).map((credential) => (
+                  <li key={credential} className="text-[#635A56] text-sm md:text-base font-semibold">
+                    {credential}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <FadeIn direction="up">
@@ -288,7 +296,7 @@ export default function HomePage() {
                 id="teachers-view-all"
                 className="btn-outline px-8 py-3 rounded-full text-sm font-semibold tracking-wider inline-flex items-center gap-2"
               >
-                Meet All Teachers
+                View Faculty Backgrounds
                 <ArrowRight size={16} />
               </Link>
             </div>
