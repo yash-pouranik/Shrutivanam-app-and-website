@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 // Register ScrollTrigger safely for React
@@ -201,11 +202,16 @@ MagneticButton.displayName = "MagneticButton";
 // -------------------------------------------------------------------------
 const MarqueeItem = () => (
   <div className="flex items-center space-x-12 px-6">
-    <span>Ancient Wisdom</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
-    <span>Modern Learning</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
-    <span>Vedic Mathematics</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
-    <span>Sanskrit Roots</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
-    <span>Spiritual Growth</span> <span className="text-orange-300 text-xl font-bold">ॐ</span>
+    <span>Ancient Wisdom</span>
+    <Image src="/shrutivanam.logo.png" alt="Shrutivanam logo" width={20} height={20} className="w-5 h-5 object-contain" />
+    <span>Modern Learning</span>
+    <Image src="/shrutivanam.logo.png" alt="Shrutivanam logo" width={20} height={20} className="w-5 h-5 object-contain" />
+    <span>Vedic Mathematics</span>
+    <Image src="/shrutivanam.logo.png" alt="Shrutivanam logo" width={20} height={20} className="w-5 h-5 object-contain" />
+    <span>Sanskrit Roots</span>
+    <Image src="/shrutivanam.logo.png" alt="Shrutivanam logo" width={20} height={20} className="w-5 h-5 object-contain" />
+    <span>Spiritual Growth</span>
+    <Image src="/shrutivanam.logo.png" alt="Shrutivanam logo" width={20} height={20} className="w-5 h-5 object-contain" />
   </div>
 );
 
@@ -347,7 +353,13 @@ export function CinematicFooter() {
             {/* "Made with Love" Badge */}
             <div className="footer-glass-pill px-8 py-3.5 rounded-full flex items-center gap-3 order-1 md:order-2 cursor-default border-slate-200 bg-white">
               <span className="text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Guided by</span>
-              <span className="animate-footer-heartbeat text-sm md:text-base text-orange-600">ॐ</span>
+              <Image
+                src="/shrutivanam.logo.png"
+                alt="Shrutivanam logo"
+                width={18}
+                height={18}
+                className="w-4 h-4 object-contain animate-footer-heartbeat"
+              />
               <span className="text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Wisdom</span>
             </div>
 

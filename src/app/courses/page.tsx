@@ -20,15 +20,25 @@ export default function CoursesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-slate-50 border-b border-slate-200">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-orange-600 text-sm font-semibold tracking-widest uppercase mb-4 font-[family-name:var(--font-cinzel)]">
+      <section
+        className="relative pt-40 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#FEF7ED]"
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 0%, rgba(255,127,50,0.15) 0%, transparent 60%)",
+          }}
+        />
+        <div className="max-w-4xl mx-auto text-center relative">
+          <p className="text-[#FF7F32] text-sm font-black tracking-widest uppercase mb-6">
             हमारे कोर्स · Our Courses
           </p>
-          <h1 className="font-[family-name:var(--font-cinzel)] text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-4 leading-tight">
-            Pathways to <span className="text-orange-600">Ancient Knowledge</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#3B2E2A] mb-8 leading-tight">
+            Pathways to <br/>
+            <span className="text-[#FF7F32]">Ancient Knowledge</span>
           </h1>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#635A56] text-xl font-medium max-w-2xl mx-auto leading-relaxed opacity-90">
             Each course is crafted to honour both the depth of the tradition
             and the needs of the modern learner. Begin anywhere — every path
             leads inward.
@@ -37,9 +47,9 @@ export default function CoursesPage() {
       </section>
 
       {/* Course Grid */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white border-y border-[#EBDBCD]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {courses.map((course) => (
               <CourseCard key={course.slug} course={course} />
             ))}
@@ -48,16 +58,19 @@ export default function CoursesPage() {
       </section>
 
       {/* Info strip */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-20">
+      <section className="px-4 sm:px-6 lg:px-8 py-24 bg-[#FEF7ED]">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white border border-slate-200 rounded-2xl p-8 md:p-12 text-center shadow-sm">
-            <p className="font-[family-name:var(--font-cormorant)] italic text-orange-600 text-lg mb-3">
+          <div
+            className="bg-white border border-[#EBDBCD] rounded-[3rem] p-12 md:p-16 text-center shadow-sm relative overflow-hidden"
+          >
+             <div className="absolute top-0 right-0 w-32 h-32 bg-[#F9D048]/10 rounded-full -mr-16 -mt-16" />
+            <p className="italic text-[#FF7F32] text-xl font-black mb-4">
               Not sure which course is right for you?
             </p>
-            <h2 className="font-[family-name:var(--font-cinzel)] text-2xl font-bold text-slate-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-black text-[#3B2E2A] mb-6">
               Let Us Guide You
             </h2>
-            <p className="text-slate-600 mb-8 max-w-md mx-auto">
+            <p className="text-[#635A56] text-lg font-medium mb-10 max-w-md mx-auto opacity-80">
               Reach out on WhatsApp and our team will help you find the perfect
               starting point for your journey.
             </p>
@@ -66,7 +79,7 @@ export default function CoursesPage() {
               target="_blank"
               rel="noopener noreferrer"
               id="courses-whatsapp-guide"
-              className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold tracking-wide"
+              className="btn-primary inline-flex items-center gap-3 px-10 py-5 rounded-full text-base font-black shadow-xl shadow-orange-100 transition-transform hover:scale-105"
             >
               Get Course Guidance
             </a>

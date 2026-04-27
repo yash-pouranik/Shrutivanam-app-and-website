@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { Teacher } from "@/data/teachers";
 
 interface TeacherCardProps {
@@ -9,56 +10,54 @@ interface TeacherCardProps {
 
 export default function TeacherCard({ teacher, detailed = false }: TeacherCardProps) {
   return (
-    <div className="group rounded-2xl p-6 bg-white border border-slate-200 shadow-sm flex flex-col items-center text-center gap-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <div className="bg-white rounded-[40px] p-8 border border-[#EBDBCD] hover:border-[#FF7F32] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col items-center text-center">
       {/* Photo */}
-      <div className="relative">
-        <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-orange-200 shadow-sm bg-slate-100">
+      <div className="relative mb-6">
+        <div className="w-28 h-28 rounded-[35px] overflow-hidden border-4 border-[#FEF7ED] shadow-lg shadow-orange-100 group">
           <Image
             src={teacher.photo}
             alt={`Photo of ${teacher.name}`}
-            width={96}
-            height={96}
-            className="object-cover w-full h-full"
+            width={112}
+            height={112}
+            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
           />
         </div>
-        <div
-          className="absolute inset-0 rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 30% 30%, rgba(234,88,12,0.12) 0%, transparent 70%)",
-          }}
-        />
       </div>
 
       {/* Name & Subject */}
-      <div>
-        <h3 className="font-[family-name:var(--font-cinzel)] font-semibold text-slate-900 text-base mb-0.5">
+      <div className="mb-6">
+        <h3 className="text-xl font-black text-[#3B2E2A] mb-1">
           {teacher.name}
         </h3>
-        <p className="text-orange-700 text-sm font-semibold">{teacher.subject}</p>
-        <p className="text-slate-500 text-xs font-[family-name:var(--font-cormorant)] italic">
+        <p className="text-[#FF7F32] text-sm font-black uppercase tracking-widest">
+          {teacher.subject}
+        </p>
+        <p className="text-[#A89F9B] text-xs font-bold italic">
           {teacher.subjectHi}
         </p>
       </div>
 
       {/* Credentials */}
-      <p className="text-xs text-slate-600 px-3 py-1 rounded-full bg-slate-50 border border-slate-200">
-        {teacher.credentials}
-      </p>
+      <div className="px-4 py-2 bg-[#FEF7ED] rounded-2xl mb-6">
+        <p className="text-xs text-[#635A56] font-bold">
+          {teacher.credentials}
+        </p>
+      </div>
 
       {/* Bio */}
-      {detailed ? (
-        <p className="text-slate-600 text-sm leading-relaxed">{teacher.bio}</p>
-      ) : (
-        <p className="text-slate-600 text-sm leading-relaxed line-clamp-3">{teacher.bio}</p>
-      )}
+      <p className={`text-[#635A56] text-sm font-semibold leading-relaxed mb-8 ${detailed ? "" : "line-clamp-3"}`}>
+        {teacher.bio}
+      </p>
 
       {/* Course link */}
       <Link
         href={`/courses/${teacher.courseSlug}`}
-        className="text-xs font-semibold tracking-wider text-orange-700 hover:text-orange-800 transition-colors duration-200 border-b border-orange-200 hover:border-orange-400 pb-0.5"
+        className="mt-auto group flex items-center gap-2 text-sm font-black text-[#FF7F32] hover:text-[#3B2E2A] transition-colors"
       >
-        View Course →
+        <span>View Course</span>
+        <div className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center transition-transform group-hover:translate-x-1">
+          <ArrowRight size={14} />
+        </div>
       </Link>
     </div>
   );

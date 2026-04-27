@@ -3,36 +3,37 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
+import type { LucideIcon } from "lucide-react";
 import {
-  CalendarDays,
-  LayoutDashboard,
-  LogOut,
   Menu,
-  Shield,
-  Users,
-  Video,
   X,
-  type LucideIcon,
+  LayoutDashboard,
+  Shield,
+  LogOut,
+  BookOpen,
+  CalendarDays,
+  Video,
 } from "lucide-react";
 
 interface NavLink {
   href: string;
   label: string;
+  labelHi?: string;
   icon?: LucideIcon;
 }
 
-// Link Configurations
 const PUBLIC_LINKS: NavLink[] = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/courses", label: "Courses" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home", labelHi: "होम" },
+  { href: "/about", label: "About", labelHi: "हमारे बारे में" },
+  { href: "/courses", label: "Courses", labelHi: "कोर्स" },
+  { href: "/contact", label: "Contact", labelHi: "संपर्क" },
 ];
 
 const ADMIN_LINKS: NavLink[] = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
-  { href: "/admin/users", label: "Users", icon: Users },
+  { href: "/admin/users", label: "Users", icon: BookOpen },
   { href: "/admin/videos", label: "Videos", icon: Video },
   { href: "/admin/meetings", label: "Meetings", icon: CalendarDays },
 ];
@@ -49,10 +50,13 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Auth helper
-  const isAdmin = session?.user?.role?.toLowerCase() === "admin";
+  const hideNavbar =
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/register");
 
-  // Determine current link set
+  const isAdmin = session?.user?.role?.toLowerCase() === "admin";
   let currentLinks: NavLink[] = PUBLIC_LINKS;
   let navType: "public" | "admin" | "student" = "public";
 
@@ -64,264 +68,258 @@ export default function Navbar() {
     navType = "student";
   }
 
-  // Sync menu state on path change
-  const [prevPathname, setPrevPathname] = useState(pathname);
-  if (pathname !== prevPathname) {
-    setPrevPathname(pathname);
-    setMenuOpen(false);
-  }
-
   useEffect(() => {
+    if (hideNavbar) return;
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [hideNavbar]);
 
   useEffect(() => {
+    if (hideNavbar) return;
     if (menuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
-  }, [menuOpen]);
+  }, [menuOpen, hideNavbar]);
 
   const userInitial = session?.user?.name ? session.user.name.charAt(0).toUpperCase() : "U";
+
+  if (hideNavbar) {
+    return null;
+  }
 
   return (
     <>
       <header
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 w-[94%] max-w-6xl ${
-          scrolled ? "top-2" : "top-4"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-[#FEF7ED]/95 backdrop-blur-md border-b border-[#EBDBCD] shadow-sm py-2"
+            : "bg-transparent py-4"
         }`}
       >
-        <div
-          className={`relative w-full h-14 md:h-16 flex items-center justify-between px-4 md:px-8 rounded-full border transition-all duration-300 ${
-            scrolled
-              ? "bg-white shadow-md border-slate-200"
-              : "bg-white/95 border-slate-200"
-          }`}
-        >
-          {/* Logo Section */}
-          <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-            <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 text-sm font-bold transition-all duration-300 group-hover:scale-110">
-              ॐ
-            </div>
-            <div className="flex flex-col -gap-1">
-               <span className="font-[family-name:var(--font-cinzel)] text-sm md:text-base font-bold tracking-[0.2em] text-slate-900 leading-tight">
-                SHRUTIVANAM
-              </span>
-              {navType !== "public" && (
-                <span className="text-[10px] font-bold text-orange-600 tracking-[0.3em] uppercase ml-0.5">
-                  {navType === "admin" ? "Admin Panel" : "Student Hub"}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3 group shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[#FF7F32] flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-orange-200 transition-transform group-hover:scale-110">
+                <Image
+                  src="/shrutivanam.logo.png"
+                  alt="Shrutivanam logo"
+                  width={28}
+                  height={28}
+                  className="w-7 h-7 object-contain"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl md:text-2xl font-black tracking-tight text-[#3B2E2A] leading-tight">
+                  Shruti<span className="text-[#FF7F32]">vanam</span>
                 </span>
-              )}
-            </div>
-          </Link>
+                {navType !== "public" && (
+                   <span className="text-[10px] font-bold text-[#FF7F32] tracking-[0.2em] uppercase">
+                   {navType === "admin" ? "Admin Panel" : "Student Hub"}
+                 </span>
+                )}
+              </div>
+            </Link>
 
-          {/* Desktop Nav - Centered Dynamic Links */}
-          <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2 gap-2 lg:gap-4">
-            {currentLinks.map((link) => {
-              const Icon = link.icon;
-              const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
-              
-              return (
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-2 lg:gap-8 absolute left-1/2 -translate-x-1/2">
+              {currentLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-[12px] font-bold tracking-widest uppercase transition-colors duration-200 ${
-                    active 
-                      ? "text-orange-600 bg-orange-50 border border-orange-100" 
-                      : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+                  className={`px-3 py-2 text-sm font-bold tracking-wide transition-all duration-200 flex items-center gap-2 rounded-xl ${
+                    pathname === link.href
+                      ? "text-[#FF7F32] bg-[#FF7F32]/5"
+                      : "text-[#3B2E2A] hover:text-[#FF7F32] hover:bg-[#FF7F32]/5"
                   }`}
                 >
-                  {Icon && <Icon size={14} className={active ? "text-orange-600" : "text-slate-400"} />}
+                  {link.icon && <link.icon size={16} />}
                   {link.label}
                 </Link>
-              );
-            })}
-          </nav>
+              ))}
+            </nav>
 
-          {/* Right Side - Auth / Avatar */}
-          <div className="flex items-center gap-3">
-            {session ? (
-              <div className="flex items-center gap-2">
-                {/* Visual Indicator of Role (Desktop) */}
-                {navType === "public" && (
-                  <Link
-                    href={isAdmin ? "/admin" : "/dashboard"}
-                    className="hidden lg:flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest transition-colors hover:bg-orange-50 bg-slate-50 text-slate-700 border border-slate-200"
-                  >
-                    {isAdmin ? <Shield size={12} /> : <LayoutDashboard size={12} />}
-                    {isAdmin ? "PANEL" : "DASHBOARD"}
-                  </Link>
-                )}
+            {/* Right Side */}
+            <div className="flex items-center gap-3">
+              {session ? (
+                <div className="flex items-center gap-3">
+                  {/* Dashboard Link for Desktop (only on public pages) */}
+                  {navType === "public" && (
+                    <Link
+                      href={isAdmin ? "/admin" : "/dashboard"}
+                      className="hidden lg:flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold bg-[#FF7F32]/10 text-[#FF7F32] border border-[#FF7F32]/20 hover:bg-[#FF7F32] hover:text-white transition-all"
+                    >
+                      {isAdmin ? <Shield size={14} /> : <LayoutDashboard size={14} />}
+                      {isAdmin ? "ADMIN" : "DASHBOARD"}
+                    </Link>
+                  )}
 
-                {/* Profile Circle */}
-                <div className="relative group cursor-pointer ml-1">
-                  <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 text-sm font-bold transition-all duration-200 group-hover:border-slate-300">
-                    {userInitial}
-                  </div>
-                  
-                  {/* Tooltip/Mini Menu on Hover */}
-                  <div className="absolute top-full right-0 mt-3 w-52 py-2 bg-white border border-slate-200 rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-xl z-50">
-                    <div className="px-4 py-3 border-b border-slate-100 mb-1 bg-slate-50 rounded-t-2xl">
-                      <p className="text-[10px] text-slate-500 font-bold tracking-[0.2em] uppercase mb-0.5">Welcome Back</p>
-                      <p className="text-[13px] text-slate-900 font-bold truncate">{session.user.name}</p>
-                      <p className="text-[10px] text-slate-500 truncate">{session.user.email}</p>
-                    </div>
+                  {/* Profile Dropdown */}
+                  <div className="relative group">
+                    <button className="w-10 h-10 rounded-xl bg-white border border-[#EBDBCD] flex items-center justify-center text-[#3B2E2A] font-bold shadow-sm transition-all group-hover:border-[#FF7F32]/30">
+                      {userInitial}
+                    </button>
                     
-                    <div className="py-1">
-                      {navType !== "public" && (
-                         <Link
-                         href="/"
-                         className="flex items-center gap-3 px-4 py-2 text-[12px] text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                       >
-                         <Menu size={14} />
-                         Back to Website
-                       </Link>
-                      )}
+                    <div className="absolute top-full right-0 mt-3 w-64 py-2 bg-white border border-[#EBDBCD] rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 shadow-2xl z-50">
+                      <div className="px-5 py-4 border-b border-[#FEF7ED] mb-2 bg-[#FEF7ED]/50 rounded-t-2xl">
+                        <p className="text-[10px] text-[#A89F9B] font-bold tracking-widest uppercase mb-1">Authenticated</p>
+                        <p className="text-sm font-black text-[#3B2E2A] truncate">{session.user.name}</p>
+                        <p className="text-[11px] text-[#635A56] truncate opacity-70">{session.user.email}</p>
+                      </div>
                       
-                      <Link
-                        href={isAdmin ? "/admin" : "/dashboard"}
-                        className="flex items-center gap-3 px-4 py-2 text-[12px] text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                      >
-                        {isAdmin ? <Shield size={14} /> : <LayoutDashboard size={14} />}
-                        {isAdmin ? "Admin Overview" : "Student Dashboard"}
-                      </Link>
-                      
-                      <button
-                        onClick={() => signOut({ callbackUrl: "/" })}
-                        className="flex items-center gap-3 w-full px-4 py-2 text-[12px] text-red-600 hover:bg-red-50 transition-colors text-left"
-                      >
-                        <LogOut size={14} />
-                        Logout Profile
-                      </button>
+                      <div className="px-2 space-y-1">
+                        {navType !== "public" && (
+                           <Link
+                           href="/"
+                           className="flex items-center gap-3 px-4 py-2.5 text-xs font-bold text-[#635A56] hover:text-[#FF7F32] hover:bg-[#FF7F32]/5 rounded-xl transition-all"
+                         >
+                           <Menu size={14} />
+                           Public Website
+                         </Link>
+                        )}
+                        <Link
+                          href={isAdmin ? "/admin" : "/dashboard"}
+                          className="flex items-center gap-3 px-4 py-2.5 text-xs font-bold text-[#635A56] hover:text-[#FF7F32] hover:bg-[#FF7F32]/5 rounded-xl transition-all"
+                        >
+                          {isAdmin ? <Shield size={14} /> : <LayoutDashboard size={14} />}
+                          {isAdmin ? "Admin Overview" : "Student Dashboard"}
+                        </Link>
+                        <button
+                          onClick={() => signOut({ callbackUrl: "/" })}
+                          className="flex items-center gap-3 w-full px-4 py-2.5 text-xs font-bold text-red-500 hover:bg-red-50 rounded-xl transition-all text-left"
+                        >
+                          <LogOut size={14} />
+                          Sign Out
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <div className="flex items-center gap-1.5 md:gap-2">
-                <Link
-                  href="/login"
-                  className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold tracking-widest text-slate-600 hover:bg-slate-50 transition-colors"
-                >
-                  SIGN IN
-                </Link>
-                <Link
-                  href="/register"
-                  className="px-5 md:px-6 py-2 rounded-full text-[11px] font-bold tracking-widest bg-orange-600 text-white hover:bg-orange-700 transition-colors"
-                >
-                  GET STARTED
-                </Link>
-              </div>
-            )}
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Link
+                    href="/login"
+                    className="hidden sm:flex items-center px-5 py-2.5 text-sm font-bold text-[#3B2E2A] hover:text-[#FF7F32] transition-colors"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/register"
+                    className="btn-primary px-6 py-2.5 text-sm shadow-lg shadow-orange-100"
+                  >
+                    Join Us
+                  </Link>
+                </div>
+              )}
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-slate-700 bg-slate-50 border border-slate-200"
-            >
-              {menuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
+              {/* Mobile Toggle */}
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-[#EBDBCD] text-[#3B2E2A] shadow-sm"
+              >
+                {menuOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Drawer */}
       <div
         className={`fixed inset-0 z-[60] md:hidden transition-all duration-300 ${
           menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => setMenuOpen(false)}
-        style={{ background: "rgba(15, 23, 42, 0.4)", backdropFilter: "blur(4px)" }}
+        style={{ background: "rgba(59, 46, 42, 0.4)", backdropFilter: "blur(4px)" }}
       />
 
-      {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-[70] md:hidden w-72 bg-white border-l border-slate-200 transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 bottom-0 z-[70] md:hidden w-80 bg-[#FEF7ED] border-l-2 border-[#EBDBCD] transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full p-8 pt-20">
+        <div className="flex flex-col h-full p-8 pt-24">
           <button
             onClick={() => setMenuOpen(false)}
-            className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-slate-500"
+            className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-[#EBDBCD] text-[#3B2E2A]"
           >
             <X size={20} />
           </button>
 
-          <div className="mb-10 text-center">
-            <div className="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 text-2xl font-bold mx-auto mb-4">
-              ॐ
+          <div className="text-center mb-10">
+            <div className="w-14 h-14 rounded-2xl bg-[#FF7F32] flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 shadow-lg shadow-orange-200">
+              <Image
+                src="/shrutivanam.logo.png"
+                alt="Shrutivanam logo"
+                width={36}
+                height={36}
+                className="w-9 h-9 object-contain"
+              />
             </div>
-            <p className="font-[family-name:var(--font-cinzel)] text-slate-900 text-lg tracking-widest leading-none">
-              SHRUTIVANAM
-            </p>
-            <p className="text-[10px] text-orange-600 tracking-[0.3em] uppercase mt-2 font-bold">
+            <p className="text-xl font-black text-[#3B2E2A] tracking-tight">Shrutivanam</p>
+            <p className="text-[10px] text-[#FF7F32] tracking-[0.2em] uppercase mt-2 font-bold opacity-80">
                {navType === "public" ? "Wisdom Hub" : navType === "admin" ? "Admin Panel" : "Student Hub"}
             </p>
           </div>
 
-          <nav className="flex flex-col gap-2">
-            {currentLinks.map((link) => {
-               const Icon = link.icon;
-               const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
-
-               return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`flex items-center gap-4 text-sm font-bold tracking-[0.2em] uppercase py-4 px-4 rounded-xl transition-colors duration-200 ${
-                    active 
-                      ? "text-orange-600 bg-orange-50 border border-orange-100" 
-                      : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
-                  }`}
-                >
-                  {Icon && <Icon size={16} />}
-                  {link.label}
-                </Link>
-               );
-            })}
-            
-            {navType !== "public" && (
-               <Link
-               href="/"
-               className="flex items-center gap-4 text-sm font-bold tracking-[0.2em] uppercase py-4 px-4 rounded-xl text-slate-400 hover:text-slate-900 mt-4 transition-colors"
-             >
-               <Menu size={16} />
-               Public Website
-             </Link>
-            )}
+          <nav className="flex flex-col gap-3">
+            {currentLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={`flex items-center justify-between px-6 py-4 rounded-2xl font-bold transition-all duration-200 ${
+                  pathname === link.href
+                    ? "bg-[#FF7F32] text-white shadow-lg shadow-orange-100"
+                    : "text-[#3B2E2A] hover:bg-white"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  {link.icon && <link.icon size={18} />}
+                  <span>{link.label}</span>
+                </div>
+                {link.labelHi && (
+                  <span className={pathname === link.href ? "text-white/70" : "text-[#FF7F32]"}>
+                    {link.labelHi}
+                  </span>
+                )}
+              </Link>
+            ))}
           </nav>
 
           <div className="mt-auto space-y-4">
             {session ? (
               <>
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                  <p className="text-[10px] text-slate-500 tracking-widest uppercase mb-1 font-bold">Signed in as</p>
-                  <p className="text-sm font-bold text-slate-900 truncate">{session.user.name}</p>
+                <div className="p-5 rounded-2xl bg-white border border-[#EBDBCD] shadow-sm">
+                  <p className="text-[10px] text-[#A89F9B] tracking-widest uppercase mb-1 font-bold">Profile</p>
+                  <p className="text-sm font-black text-[#3B2E2A] truncate">{session.user.name}</p>
                 </div>
                 <button
                   onClick={() => signOut({ callbackUrl: "/" })}
-                  className="block w-full py-4 rounded-2xl text-center text-[12px] font-bold tracking-widest text-red-600 bg-red-50 hover:bg-red-100 transition-colors"
+                  className="w-full py-4 flex items-center justify-center gap-2 rounded-2xl font-bold text-red-500 bg-red-50 hover:bg-red-100 transition-colors"
                 >
-                  LOGOUT PROFILE
+                  <LogOut size={18} />
+                  Sign Out
                 </button>
               </>
             ) : (
               <>
                 <Link
                   href="/register"
-                  className="block w-full py-4 rounded-2xl text-center text-[12px] font-bold tracking-widest bg-orange-600 text-white hover:bg-orange-700 transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                  className="btn-primary w-full py-4 flex items-center justify-center text-base shadow-xl shadow-orange-100"
                 >
-                  GET STARTED
+                  Get Started
                 </Link>
                 <Link
                   href="/login"
-                  className="block w-full py-4 rounded-2xl text-center text-[12px] font-bold tracking-widest border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full py-4 flex items-center justify-center rounded-2xl border-2 border-[#EBDBCD] text-[#3B2E2A] font-bold hover:bg-white transition-all"
                 >
-                  LOGIN
+                  Login
                 </Link>
               </>
             )}

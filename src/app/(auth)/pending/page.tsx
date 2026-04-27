@@ -48,7 +48,7 @@ export default function PendingPage() {
         </div>
 
         <h1
-          className="text-3xl font-bold text-slate-900 mb-3"
+          className="text-2xl font-bold text-slate-900 mb-3"
           style={{ fontFamily: "var(--font-cinzel)" }}
         >
           {isRejected ? "Payment Rejected" : "Verification Pending"}

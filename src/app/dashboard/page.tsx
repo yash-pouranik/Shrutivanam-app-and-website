@@ -57,10 +57,10 @@ export default async function DashboardPage() {
         >
           Welcome back
         </p>
-        <h2 className="text-3xl font-bold text-slate-900" style={{ fontFamily: "var(--font-cinzel)" }}>
+        <h2 className="text-2xl font-bold text-slate-900" style={{ fontFamily: "var(--font-cinzel)" }}>
           {session?.user?.name}
         </h2>
-        <p className="text-slate-600 italic text-base sm:text-lg" style={{ fontFamily: "var(--font-cormorant)" }}>
+        <p className="text-slate-600 italic text-sm" style={{ fontFamily: "var(--font-cormorant)" }}>
           &ldquo;सा विद्या या विमुक्तये&rdquo; — That which liberates is true knowledge.
         </p>
       </div>
@@ -79,7 +79,7 @@ export default async function DashboardPage() {
                 <Icon size={18} className={toneStyles[tone].icon} />
               </div>
               <p
-                className={`text-3xl font-bold mb-1 ${
+                className={`text-xl font-bold mb-1 ${
                   label === "Account Status" ? "text-green-700" : "text-slate-900"
                 }`}
               >

@@ -119,7 +119,7 @@ export default function DashboardMeetingsPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900 mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
+        <h1 className="text-2xl font-bold text-slate-900 mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
           Live Sessions
         </h1>
         <p className="text-slate-500 text-sm">

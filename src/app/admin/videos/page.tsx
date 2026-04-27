@@ -30,6 +30,9 @@ export default function AdminVideosPage() {
   const [saving, setSaving] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const [reorderSaving, setReorderSaving] = useState(false);
 
   const [form, setForm] = useState({
     title: "",
@@ -122,11 +125,47 @@ export default function AdminVideosPage() {
     setDeletingId(null);
   };
 
+  const reorderList = (list: VideoItem[], from: number, to: number) => {
+    const updated = [...list];
+    const [moved] = updated.splice(from, 1);
+    updated.splice(to, 0, moved);
+    return updated.map((item, index) => ({ ...item, order: index + 1 }));
+  };
+
+  const handleDrop = async (index: number) => {
+    if (dragIndex === null) return;
+    const from = dragIndex;
+    const to = dragOverIndex ?? index;
+    if (from === to) {
+      setDragIndex(null);
+      setDragOverIndex(null);
+      return;
+    }
+
+    const updated = reorderList(videos, from, to);
+    setVideos(updated);
+    setDragIndex(null);
+    setDragOverIndex(null);
+    setReorderSaving(true);
+
+    await Promise.all(
+      updated.map((video, idx) =>
+        fetch(`/api/videos/${video._id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ order: idx + 1 }),
+        }),
+      ),
+    );
+
+    setReorderSaving(false);
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
+          <h1 className="text-2xl font-bold text-slate-900 mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
             Videos
           </h1>
           <p className="text-slate-500 text-sm">{videos.length} videos available</p>
@@ -239,9 +278,33 @@ export default function AdminVideosPage() {
         </div>
       ) : (
         <div className="space-y-3">
-          {videos.map((video) => (
-            <div key={video._id} className="rounded-2xl p-5 flex items-center gap-4 bg-white border border-slate-200 shadow-sm">
-              <GripVertical size={16} className="text-slate-300 flex-shrink-0" />
+          {reorderSaving && (
+            <p className="text-xs text-slate-500">Saving order…</p>
+          )}
+          {videos.map((video, index) => (
+            <div
+              key={video._id}
+              draggable
+              onDragStart={(e) => {
+                e.dataTransfer.effectAllowed = "move";
+                setDragIndex(index);
+                setDragOverIndex(index);
+              }}
+              onDragEnter={() => setDragOverIndex(index)}
+              onDragOver={(e) => e.preventDefault()}
+              onDragEnd={() => {
+                setDragIndex(null);
+                setDragOverIndex(null);
+              }}
+              onDrop={(e) => {
+                e.preventDefault();
+                handleDrop(index);
+              }}
+              className={`rounded-2xl p-5 flex items-center gap-4 bg-white border shadow-sm transition-all ${
+                dragOverIndex === index ? "border-orange-200 ring-2 ring-orange-100 bg-orange-50/40" : "border-slate-200"
+              }`}
+            >
+              <GripVertical size={16} className="text-slate-300 flex-shrink-0 cursor-grab active:cursor-grabbing" />
               <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-slate-50 border border-slate-100">
                 {typeIcon(video.type)}
               </div>

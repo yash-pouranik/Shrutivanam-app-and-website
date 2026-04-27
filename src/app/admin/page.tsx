@@ -63,7 +63,7 @@ export default async function AdminOverviewPage() {
         >
           Welcome back
         </p>
-        <h2 className="text-3xl font-bold text-slate-900" style={{ fontFamily: "var(--font-cinzel)" }}>
+        <h2 className="text-2xl font-bold text-slate-900" style={{ fontFamily: "var(--font-cinzel)" }}>
           Command Center
         </h2>
         <p className="text-slate-600 text-sm">
@@ -85,7 +85,7 @@ export default async function AdminOverviewPage() {
             <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 border ${toneStyles[tone].wrap}`}>
               <Icon size={18} className={toneStyles[tone].icon} />
             </div>
-            <p className="text-3xl font-bold text-slate-900 mb-1">{value}</p>
+            <p className="text-xl font-bold text-slate-900 mb-1">{value}</p>
             <p className="text-slate-500 text-xs">{label}</p>
           </div>
         ))}

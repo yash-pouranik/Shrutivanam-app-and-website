@@ -11,12 +11,15 @@ interface User {
   isActive: boolean;
   createdAt: string;
   paymentScreenshot?: string;
+  paymentTransactionIdEncrypted?: string;
 }
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [actionId, setActionId] = useState<string | null>(null);
+  const [transactionIds, setTransactionIds] = useState<Record<string, string>>({});
+  const [transactionLoadingId, setTransactionLoadingId] = useState<string | null>(null);
 
   const fetchUsers = async () => {
     const res = await fetch("/api/users");
@@ -37,6 +40,20 @@ export default function AdminUsersPage() {
     await fetch(`/api/users/${id}/${action}`, { method: "PATCH" });
     await fetchUsers();
     setActionId(null);
+  };
+
+  const handleTransactionView = async (id: string) => {
+    setTransactionLoadingId(id);
+    const res = await fetch(`/api/users/${id}/transaction`);
+    const data = await res.json();
+    setTransactionLoadingId(null);
+
+    if (!res.ok) {
+      setTransactionIds((prev) => ({ ...prev, [id]: "Unavailable" }));
+      return;
+    }
+
+    setTransactionIds((prev) => ({ ...prev, [id]: data.transactionId ?? "—" }));
   };
 
   const pendingCount = useMemo(
@@ -70,7 +87,7 @@ export default function AdminUsersPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-3xl font-bold text-slate-900 mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
+        <h2 className="text-2xl font-bold text-slate-900 mb-1" style={{ fontFamily: "var(--font-cinzel)" }}>
           Students
         </h2>
         <p className="text-slate-500 text-sm">
@@ -115,6 +132,27 @@ export default function AdminUsersPage() {
 
                 {/* Status badge */}
                 <div className="flex-shrink-0">{statusBadge(user.paymentStatus)}</div>
+
+                {/* Transaction ID */}
+                {user.paymentTransactionIdEncrypted ? (
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    {transactionIds[user._id] ? (
+                      <span className="text-xs text-slate-600 font-mono">
+                        {transactionIds[user._id]}
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => handleTransactionView(user._id)}
+                        disabled={transactionLoadingId === user._id}
+                        className="text-xs text-orange-700 hover:text-orange-800 underline underline-offset-2"
+                      >
+                        {transactionLoadingId === user._id ? "Loading…" : "View Txn ID"}
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <span className="text-xs text-slate-400 flex-shrink-0">Txn ID: —</span>
+                )}
 
                 {/* Screenshot link */}
                 {user.paymentScreenshot && (

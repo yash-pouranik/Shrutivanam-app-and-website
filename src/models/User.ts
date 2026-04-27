@@ -7,6 +7,9 @@ export interface IUser extends Document {
   role: "student" | "admin";
   paymentStatus: "pending" | "paid" | "rejected";
   paymentScreenshot?: string; // Cloudinary URL
+  paymentTransactionIdEncrypted?: string;
+  paymentTransactionIdIv?: string;
+  paymentTransactionIdTag?: string;
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -42,6 +45,18 @@ const UserSchema = new Schema<IUser>(
       default: "pending",
     },
     paymentScreenshot: {
+      type: String,
+      default: null,
+    },
+    paymentTransactionIdEncrypted: {
+      type: String,
+      default: null,
+    },
+    paymentTransactionIdIv: {
+      type: String,
+      default: null,
+    },
+    paymentTransactionIdTag: {
       type: String,
       default: null,
     },

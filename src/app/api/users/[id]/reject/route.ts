@@ -41,7 +41,7 @@ export async function PATCH(
         <div style="background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; padding: 20px; margin: 24px 0;">
           <p style="color: #E2C97E; font-weight: bold; margin: 0 0 8px;">Please contact us:</p>
           <p style="color: #C8BFAD; margin: 0;">WhatsApp: <strong>+91 75665 85848</strong></p>
-          <p style="color: #C8BFAD; margin: 4px 0 0;">Email: shrutivanam@gmail.com</p>
+          <p style="color: #C8BFAD; margin: 4px 0 0;">Email: shrutivanam108@gmail.com</p>
         </div>
         <p style="color: #C8BFAD60; font-size: 12px; margin-top: 40px;">Shrutivanam — Ancient Wisdom, Modern Learning</p>
       </div>
