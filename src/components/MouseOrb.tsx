@@ -12,7 +12,8 @@ export default function MouseOrb() {
   const cursorY = useSpring(-100, springConfig);
 
   useEffect(() => {
-    setIsClient(true);
+    // Defer to avoid synchronous state update in effect warning
+    requestAnimationFrame(() => setIsClient(true));
     
     // Set initial position to center before mouse movement
     cursorX.set(document.documentElement.clientWidth / 2);
@@ -33,12 +34,13 @@ export default function MouseOrb() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none mix-blend-screen z-0 -translate-x-1/2 -translate-y-1/2 hidden md:block"
+      className="fixed top-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none mix-blend-screen z-0 -translate-x-1/2 -translate-y-1/2 hidden md:block"
       style={{
         x: cursorX,
         y: cursorY,
-        background: "radial-gradient(circle, rgba(201,168,76,0.06) 0%, rgba(42,29,122,0.03) 40%, transparent 70%)",
-        filter: "blur(40px)",
+        background: "radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(42,29,122,0.02) 50%, transparent 80%)",
+        filter: "blur(20px)",
+        willChange: "transform",
       }}
     />
   );

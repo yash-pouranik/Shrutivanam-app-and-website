@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { teachers } from "@/data/teachers";
-import TeacherCard from "@/components/TeacherCard";
 import SectionDivider from "@/components/SectionDivider";
 import WhatsAppStrip from "@/components/WhatsAppStrip";
 import { Star, Heart, Lightbulb } from "lucide-react";
@@ -32,87 +32,83 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      {/* ─── HERO ─────────────────────────────────────────────────── */}
-      <section
-        className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 60%), linear-gradient(180deg, #1A1040 0%, #0d0b1e 100%)",
-        }}
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-[#C9A84C] text-sm font-semibold tracking-widest uppercase mb-6 font-[family-name:var(--font-cinzel)]">
+      {/* HERO */}
+      <section className="relative pt-40 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#FEF7ED]">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 0%, rgba(255,127,50,0.15) 0%, transparent 60%)",
+          }}
+        />
+        <div className="max-w-4xl mx-auto text-center relative">
+          <p className="text-[#FF7F32] text-sm font-black tracking-widest uppercase mb-6">
             हमारे बारे में · About Us
           </p>
-          <h1 className="font-[family-name:var(--font-cinzel)] text-4xl sm:text-5xl md:text-6xl font-bold text-[#F5F0E8] mb-6 leading-tight">
-            Preserving the <span className="gold-shimmer">Sacred Flame</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#3B2E2A] mb-8 leading-tight">
+            Preserving the <span className="text-[#FF7F32]">Sacred Flame</span>
             <br />
             of Vedic Knowledge
           </h1>
-          <p className="text-[#C8BFAD]/80 text-lg max-w-2xl mx-auto leading-relaxed">
-            Shrutivanam was born from a simple conviction: that the wisdom of
-            the Vedas is not merely historical — it is eternally relevant, and
-            every sincere seeker deserves access to it.
+          <p className="text-[#635A56] text-xl font-medium max-w-2xl mx-auto leading-relaxed opacity-90">
+            Shrutivanam was born from a simple conviction: that the wisdom of the
+            Vedas is not merely historical — it is eternally relevant, and every
+            sincere seeker deserves access to it.
           </p>
         </div>
       </section>
 
-      <SectionDivider withSymbol className="max-w-lg mx-auto px-8" />
-
-      {/* ─── MISSION ──────────────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8">
+      {/* MISSION */}
+      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-white border-y border-[#EBDBCD]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-20 items-start">
             <div>
-              <p className="text-[#C9A84C] text-sm font-semibold tracking-widest uppercase mb-4 font-[family-name:var(--font-cinzel)]">
+              <p className="text-[#7BBD8B] text-sm font-black tracking-widest uppercase mb-4">
                 हमारा उद्देश्य · Our Mission
               </p>
-              <h2 className="font-[family-name:var(--font-cinzel)] text-3xl md:text-4xl font-bold text-[#F5F0E8] mb-6">
-                Spiritual Knowledge Over Material Gain
+              <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-8 leading-tight">
+                Spiritual Knowledge Over <br/>
+                <span className="text-[#FF7F32]">Material Gain</span>
               </h2>
-              <p className="text-[#C8BFAD]/80 leading-relaxed mb-5">
-                In an age of information overload, Shrutivanam is an oasis of
-                depth. Our mission is to create a space where knowledge is
-                approached with reverence — where students slow down, inquire
-                deeply, and allow ancient wisdom to genuinely transform their
-                understanding.
-              </p>
-              <p className="text-[#C8BFAD]/80 leading-relaxed mb-5">
-                We teach Vedic Mathematics, Yoga, Sanskrit, and Indian
-                Philosophy not as isolated subjects, but as facets of a unified
-                vision of life — one that sees consciousness, nature, and
-                purpose as deeply interconnected.
-              </p>
-              <p className="text-[#C8BFAD]/80 leading-relaxed">
-                Our approach is accessible to modern learners without
-                compromising the integrity and depth of the tradition. We honor
-                the lineage, while speaking to the present moment.
-              </p>
+              <div className="space-y-6 text-[#635A56] text-lg font-medium leading-relaxed opacity-90">
+                <p>
+                  In an age of information overload, Shrutivanam is an oasis of
+                  depth. Our mission is to create a space where knowledge is
+                  approached with reverence — where students slow down, inquire
+                  deeply, and allow ancient wisdom to genuinely transform their
+                  understanding.
+                </p>
+                <p>
+                  We teach Vedic Mathematics, Yoga, Sanskrit, and Indian
+                  Philosophy not as isolated subjects, but as facets of a unified
+                  vision of life — one that sees consciousness, nature, and
+                  purpose as deeply interconnected.
+                </p>
+                <p>
+                  Our approach is accessible to modern learners without
+                  compromising the integrity and depth of the tradition. We honor
+                  the lineage, while speaking to the present moment.
+                </p>
+              </div>
             </div>
 
-            <div className="space-y-5">
+            <div className="space-y-6">
               {values.map((val, i) => {
                 const Icon = val.icon;
+                const colors = ['bg-orange-100 text-orange-600', 'bg-green-100 text-green-600', 'bg-yellow-100 text-yellow-600'];
                 return (
                   <div
                     key={i}
-                    className="glass-card rounded-xl p-5 flex gap-4 items-start hover:border-[rgba(201,168,76,0.35)] transition-all duration-300"
+                    className="rounded-[2.5rem] p-8 bg-[#FEF7ED]/50 border border-[#EBDBCD] flex gap-6 items-start transition-all duration-300 hover:shadow-xl hover:bg-white group"
                   >
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(201,168,76,0.2) 0%, rgba(31,21,88,0.5) 100%)",
-                        border: "1px solid rgba(201, 168, 76, 0.2)",
-                      }}
-                    >
-                      <Icon size={18} className="text-[#C9A84C]" />
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 mt-1 transition-transform group-hover:scale-110 ${colors[i % 3]}`}>
+                      <Icon size={24} />
                     </div>
                     <div>
-                      <h3 className="font-[family-name:var(--font-cinzel)] font-semibold text-[#F5F0E8] text-sm mb-2">
+                      <h3 className="font-black text-[#3B2E2A] text-xl mb-3">
                         {val.title}
                       </h3>
-                      <p className="text-[#C8BFAD]/70 text-sm leading-relaxed">
+                      <p className="text-[#635A56] text-base font-semibold leading-relaxed opacity-80">
                         {val.desc}
                       </p>
                     </div>
@@ -124,60 +120,68 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <SectionDivider withSymbol className="max-w-lg mx-auto px-8" />
-
-      {/* ─── TEACHERS ─────────────────────────────────────────────── */}
-      <section
-        id="teachers"
-        className="section-pad px-4 sm:px-6 lg:px-8"
-        style={{ scrollMarginTop: "80px" }}
-      >
+      {/* TEACHERS */}
+      <section id="teachers" className="py-32 px-4 sm:px-6 lg:px-8 bg-[#FEF7ED] scroll-mt-28">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-[#C9A84C] text-sm font-semibold tracking-widest uppercase mb-4 font-[family-name:var(--font-cinzel)]">
+          <div className="text-center mb-16">
+            <p className="text-[#FF7F32] text-sm font-black tracking-widest uppercase mb-4">
               हमारे गुरु · Our Teachers
             </p>
-            <h2 className="font-[family-name:var(--font-cinzel)] text-3xl md:text-4xl font-bold text-[#F5F0E8] mb-4">
-              The Faces Behind the Knowledge
+            <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-4">
+              Learn from Highly Qualified Teachers
             </h2>
-            <p className="text-[#C8BFAD]/70 max-w-2xl mx-auto">
-              Each of our teachers has walked the dual path of rigorous
-              academic training and sincere spiritual practice — a rare
-              combination that yields teaching of exceptional quality and depth.
+            <p className="text-[#635A56] text-xl font-medium max-w-2xl mx-auto opacity-80">
+              Learn from teachers graduated from leading institutes and seasoned in
+              authentic Vedic traditions.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teachers.map((teacher) => (
-              <TeacherCard key={teacher.slug} teacher={teacher} detailed />
-            ))}
+          <div className="max-w-3xl mx-auto">
+            <div className="rounded-3xl bg-white border border-[#EBDBCD] shadow-sm p-8">
+              <p className="text-[#3B2E2A] text-xs font-black uppercase tracking-widest mb-6">
+                Faculty Backgrounds
+              </p>
+              <ul className="space-y-3">
+                {Array.from(new Set(teachers.map((teacher) => teacher.credentials))).map((credential) => (
+                  <li key={credential} className="text-[#635A56] text-sm md:text-base font-semibold">
+                    {credential}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      <SectionDivider withSymbol className="max-w-lg mx-auto px-8" />
-
-      {/* ─── VISION ───────────────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8">
+      {/* VISION */}
+      <section className="py-32 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-[#C9A84C] text-sm font-semibold tracking-widest uppercase mb-6 font-[family-name:var(--font-cinzel)]">
+          <p className="text-[#F9D048] text-sm font-black tracking-widest uppercase mb-6">
             हमारी दृष्टि · Our Vision
           </p>
-          <h2 className="font-[family-name:var(--font-cinzel)] text-3xl md:text-4xl font-bold text-[#F5F0E8] mb-6">
-            A World Illumined by Vedic Wisdom
+          <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-8 leading-tight">
+            A World Illumined by <br/>
+            <span className="text-[#FF7F32]">Vedic Wisdom</span>
           </h2>
-          <p className="text-[#C8BFAD]/80 text-lg leading-relaxed mb-8">
+          <p className="text-[#635A56] text-xl font-medium leading-relaxed mb-12 opacity-90">
             We envision a future where the profound knowledge of the Vedas —
-            tested across millennia — becomes accessible to every sincere
-            seeker, regardless of background, location, or prior knowledge.
-            Shrutivanam will grow into a living community of learners,
-            teachers, and practitioners — a digital gurukul for the modern age.
+            tested across millennia — becomes accessible to every sincere seeker,
+            regardless of background, location, or prior knowledge.
           </p>
-          <div className="glass-card rounded-2xl p-8 inline-block">
-            <p className="font-[family-name:var(--font-cormorant)] text-2xl italic text-[#E2C97E] mb-3">
+          <div className="rounded-[3rem] p-12 bg-[#FEF7ED] border border-[#EBDBCD] shadow-sm inline-block relative group">
+            <div className="absolute -top-6 -right-6 w-16 h-16 bg-[#FF7F32] rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-lg transition-transform group-hover:scale-110 rotate-12">
+              <Image
+                src="/shrutivanam.logo.png"
+                alt="Shrutivanam logo"
+                width={36}
+                height={36}
+                className="w-9 h-9 object-contain"
+              />
+            </div>
+            <p className="text-3xl font-black text-[#FF7F32] mb-4 tracking-tight italic">
               &ldquo;ज्ञानेन तु तदज्ञानं येषां नाशितमात्मनः&rdquo;
             </p>
-            <p className="text-[#C8BFAD]/60 text-sm">
+            <p className="text-[#635A56] text-sm font-black uppercase tracking-widest opacity-60">
               &ldquo;But for those whose ignorance is destroyed by knowledge of the
               Self...&rdquo; — Bhagavad Gita 5.16
             </p>

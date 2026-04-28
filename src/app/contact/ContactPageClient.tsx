@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MessageCircle, Mail, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Send, ChevronRight } from "lucide-react";
 
 const courseOptions = [
   "Vedic Mathematics",
@@ -31,162 +31,149 @@ export default function ContactPageClient() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     const message = encodeURIComponent(
-      `Namaste! My name is ${form.name}.\n\nInterested in: ${form.course || "General Inquiry"}\nEmail: ${form.email}${form.phone ? "\nPhone: " + form.phone : ""}\n\nMessage: ${form.message}`
+      `Namaste! My name is ${form.name}.\n\nInterested in: ${
+        form.course || "General Inquiry"
+      }\nEmail: ${form.email}${
+        form.phone ? "\nPhone: " + form.phone : ""
+      }\n\nMessage: ${form.message}`
     );
+
     const waUrl = `https://wa.me/917566585848?text=${message}`;
     window.open(waUrl, "_blank");
     setSubmitted(true);
   };
 
+  const inputClass =
+    "w-full px-5 py-4 rounded-2xl text-base text-[#3B2E2A] placeholder-[#A89F9B] outline-none bg-[#FEF7ED]/50 border border-[#EBDBCD] focus:border-[#FF7F32]/50 focus:ring-4 focus:ring-[#FF7F32]/10 transition-all font-medium";
+
+  const labelClass =
+    "block text-xs font-black tracking-widest text-[#635A56] uppercase mb-3 opacity-70";
+
   return (
     <>
       {/* Hero */}
-      <section
-        className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 60%), linear-gradient(180deg, #1A1040 0%, #0d0b1e 100%)",
-        }}
-      >
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-[#C9A84C] text-sm font-semibold tracking-widest uppercase mb-6 font-[family-name:var(--font-cinzel)]">
+      <section className="relative pt-40 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#FEF7ED]">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 0%, rgba(255,127,50,0.15) 0%, transparent 60%)",
+          }}
+        />
+        <div className="max-w-4xl mx-auto text-center relative">
+          <p className="text-[#FF7F32] text-sm font-black tracking-widest uppercase mb-6">
             संपर्क करें · Contact Us
           </p>
-          <h1 className="font-[family-name:var(--font-cinzel)] text-4xl sm:text-5xl md:text-6xl font-bold text-[#F5F0E8] mb-6 leading-tight">
-            Begin Your <span className="gold-shimmer">Conversation</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#3B2E2A] mb-8 leading-tight">
+            Begin Your <span className="text-[#FF7F32]">Conversation</span>
           </h1>
-          <p className="text-[#C8BFAD]/80 text-lg max-w-xl mx-auto leading-relaxed">
-            Have a question about our courses or want to find the right path?
-            We are here. Reach out — we respond warmly and promptly.
+          <p className="text-[#635A56] text-xl font-medium max-w-xl mx-auto leading-relaxed opacity-90">
+            Have a question about our courses or want to find the right path? We
+            are here. Reach out — we respond warmly and promptly.
           </p>
         </div>
       </section>
 
       {/* Content */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8">
+      <section className="section-pad px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-5 gap-10">
-            {/* Info column */}
-            <div className="lg:col-span-2 space-y-6">
-              {/* WhatsApp CTA — prominent */}
-              <div
-                className="rounded-2xl p-6 text-center"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(201,168,76,0.15) 0%, rgba(31,21,88,0.4) 100%)",
-                  border: "1px solid rgba(201, 168, 76, 0.3)",
-                }}
+            {/* WhatsApp CTA */}
+            <div className="rounded-[2.5rem] p-8 bg-white border border-[#EBDBCD] shadow-sm text-center">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-[#7BBD8B]/10 border border-[#7BBD8B]/20 text-[#7BBD8B]">
+                <MessageCircle size={28} />
+              </div>
+              <h2 className="font-black text-[#3B2E2A] text-xl mb-3">
+                Chat on WhatsApp
+              </h2>
+              <p className="text-[#635A56] text-sm mb-8 leading-relaxed font-medium">
+                The fastest way to reach us. Our team is available Mon–Sat,
+                9am–7pm IST.
+              </p>
+              <a
+                href="https://wa.me/917566585848?text=Namaste%2C%20I%20am%20interested%20in%20Shrutivanam%20courses."
+                target="_blank"
+                rel="noopener noreferrer"
+                id="contact-whatsapp-direct"
+                className="w-full py-4 rounded-full flex items-center justify-center gap-3 text-sm font-black tracking-wide bg-[#7BBD8B] hover:bg-[#68a679] text-white transition-all shadow-lg shadow-green-100"
               >
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #C9A84C 0%, #E2C97E 100%)",
-                  }}
-                >
-                  <MessageCircle size={24} className="text-[#0d0b1e]" />
-                </div>
-                <h2 className="font-[family-name:var(--font-cinzel)] font-bold text-[#F5F0E8] text-lg mb-2">
-                  Chat on WhatsApp
-                </h2>
-                <p className="text-[#C8BFAD]/70 text-sm mb-5 leading-relaxed">
-                  The fastest way to reach us. Our team is available Mon–Sat,
-                  9am–7pm IST.
-                </p>
-                <a
-                  href="https://wa.me/917566585848?text=Namaste%2C%20I%20am%20interested%20in%20Shrutivanam%20courses."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  id="contact-whatsapp-direct"
-                  className="btn-primary w-full py-3 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold tracking-wide"
-                >
-                  <MessageCircle size={16} />
-                  Open WhatsApp
-                </a>
-              </div>
+                <MessageCircle size={18} />
+                Open WhatsApp
+              </a>
+            </div>
 
-              {/* Contact info */}
-              <div className="glass-card rounded-2xl p-6 space-y-5">
-                <h3 className="font-[family-name:var(--font-cinzel)] font-semibold text-[#E2C97E] text-sm tracking-widest uppercase">
-                  Other Contact
-                </h3>
-                <div className="flex items-start gap-3">
-                  <Mail size={16} className="text-[#C9A84C] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-[#C8BFAD]/50 text-xs mb-0.5">Email</p>
-                    <p className="text-[#C8BFAD]/80 text-sm">
-                      shrutivanam@gmail.com
-                    </p>
-                  </div>
+            {/* Contact info */}
+            <div className="rounded-[2.5rem] p-8 space-y-6 bg-white border border-[#EBDBCD] shadow-sm">
+              <h3 className="text-[#3B2E2A] text-xs font-black uppercase tracking-widest opacity-60">
+                Other Contact
+              </h3>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[#FF7F32]/10 flex items-center justify-center text-[#FF7F32] shrink-0">
+                  <Mail size={18} />
                 </div>
-                <div className="flex items-start gap-3">
-                  <MapPin size={16} className="text-[#C9A84C] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-[#C8BFAD]/50 text-xs mb-0.5">Location</p>
-                    <p className="text-[#C8BFAD]/80 text-sm">
-                      India (Online Classes)
-                    </p>
-                  </div>
+                <div>
+                  <p className="text-[#A89F9B] text-[10px] font-black uppercase tracking-widest mb-1">Email</p>
+                  <p className="text-[#3B2E2A] text-sm font-bold">shrutivanam108@gmail.com</p>
                 </div>
               </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[#FF7F32]/10 flex items-center justify-center text-[#FF7F32] shrink-0">
+                  <MapPin size={18} />
+                </div>
+                <div>
+                  <p className="text-[#A89F9B] text-[10px] font-black uppercase tracking-widest mb-1">Location</p>
+                  <p className="text-[#3B2E2A] text-sm font-bold">India (Online Classes)</p>
+                </div>
+              </div>
+            </div>
 
-              {/* Quote */}
-              <div className="glass-card rounded-2xl p-6 text-center">
-                <p className="font-[family-name:var(--font-cormorant)] italic text-xl text-[#E2C97E] mb-2">
-                  &ldquo;गुरुर्ब्रह्मा गुरुर्विष्णुः&rdquo;
-                </p>
-                <p className="text-[#C8BFAD]/50 text-xs">
-                  The Guru is Brahma, Vishnu, and Shiva
-                </p>
-              </div>
+            {/* Quote */}
+            <div className="rounded-[2.5rem] p-8 text-center bg-[#FEF7ED] border border-[#EBDBCD]">
+              <p className="text-2xl font-black text-[#FF7F32] mb-2 italic">
+                &ldquo;गुरुर्ब्रह्मा गुरुर्विष्णुः&rdquo;
+              </p>
+              <p className="text-[#635A56] text-xs font-black uppercase tracking-widest opacity-60">
+                The Guru is Brahma, Vishnu, and Shiva
+              </p>
             </div>
 
             {/* Form */}
             <div className="lg:col-span-3">
               {submitted ? (
-                <div className="glass-card rounded-2xl p-12 text-center h-full flex flex-col items-center justify-center min-h-[400px]">
-                  <div
-                    className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgba(201,168,76,0.2) 0%, rgba(31,21,88,0.4) 100%)",
-                      border: "1px solid rgba(201, 168, 76, 0.3)",
-                    }}
-                  >
-                    <span className="text-3xl">🙏</span>
+                <div className="rounded-[3rem] p-16 text-center h-full flex flex-col items-center justify-center min-h-[400px] bg-white border border-[#EBDBCD] shadow-sm">
+                  <div className="w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-8 bg-[#FF7F32]/10 border border-[#FF7F32]/20 shadow-lg shadow-orange-50 rotate-12">
+                    <span className="text-4xl">🙏</span>
                   </div>
-                  <h2 className="font-[family-name:var(--font-cinzel)] text-2xl font-bold text-[#F5F0E8] mb-4">
-                    Namaste! Message Sent.
+                  <h2 className="text-3xl font-black text-[#3B2E2A] mb-4">
+                    Message Sent
                   </h2>
-                  <p className="text-[#C8BFAD]/70 max-w-sm leading-relaxed">
+                  <p className="text-[#635A56] text-lg font-medium max-w-sm leading-relaxed opacity-80">
                     WhatsApp has opened with your message. Our team will respond
-                    shortly. Your journey begins now.
+                    shortly.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-8 btn-outline px-6 py-2 rounded-full text-sm"
+                    className="mt-10 px-8 py-3 rounded-full border-2 border-[#FF7F32] text-[#FF7F32] font-black text-sm hover:bg-[#FF7F32]/5 transition-all"
                   >
                     Send Another Message
                   </button>
                 </div>
               ) : (
-                <div className="glass-card rounded-2xl p-8">
-                  <h2 className="font-[family-name:var(--font-cinzel)] text-xl font-bold text-[#F5F0E8] mb-2">
+                <div className="rounded-[3rem] p-10 md:p-14 bg-white border border-[#EBDBCD] shadow-sm">
+                  <h2 className="text-3xl font-black text-[#3B2E2A] mb-3">
                     Send Us a Message
                   </h2>
-                  <p className="text-[#C8BFAD]/60 text-sm mb-8">
-                    Fill in the form below and your message will open directly
-                    in WhatsApp.
+                  <p className="text-[#635A56] text-lg font-medium mb-10 opacity-70">
+                    Fill in the form below and your message will open directly in
+                    WhatsApp.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid sm:grid-cols-2 gap-5">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid sm:grid-cols-2 gap-6">
                       <div>
-                        <label
-                          htmlFor="contact-name"
-                          className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2"
-                        >
+                        <label htmlFor="contact-name" className={labelClass}>
                           Full Name *
                         </label>
                         <input
@@ -197,18 +184,11 @@ export default function ContactPageClient() {
                           value={form.name}
                           onChange={handleChange}
                           placeholder="Your name"
-                          className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F0E8] placeholder-[#C8BFAD]/30 outline-none transition-all duration-200"
-                          style={{
-                            background: "rgba(13, 11, 30, 0.6)",
-                            border: "1px solid rgba(201, 168, 76, 0.2)",
-                          }}
+                          className={inputClass}
                         />
                       </div>
                       <div>
-                        <label
-                          htmlFor="contact-email"
-                          className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2"
-                        >
+                        <label htmlFor="contact-email" className={labelClass}>
                           Email *
                         </label>
                         <input
@@ -219,21 +199,14 @@ export default function ContactPageClient() {
                           value={form.email}
                           onChange={handleChange}
                           placeholder="your@email.com"
-                          className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F0E8] placeholder-[#C8BFAD]/30 outline-none transition-all duration-200"
-                          style={{
-                            background: "rgba(13, 11, 30, 0.6)",
-                            border: "1px solid rgba(201, 168, 76, 0.2)",
-                          }}
+                          className={inputClass}
                         />
                       </div>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 gap-5">
+                    <div className="grid sm:grid-cols-2 gap-6">
                       <div>
-                        <label
-                          htmlFor="contact-phone"
-                          className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2"
-                        >
+                        <label htmlFor="contact-phone" className={labelClass}>
                           Phone (Optional)
                         </label>
                         <input
@@ -243,48 +216,37 @@ export default function ContactPageClient() {
                           value={form.phone}
                           onChange={handleChange}
                           placeholder="+91 00000 00000"
-                          className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F0E8] placeholder-[#C8BFAD]/30 outline-none transition-all duration-200"
-                          style={{
-                            background: "rgba(13, 11, 30, 0.6)",
-                            border: "1px solid rgba(201, 168, 76, 0.2)",
-                          }}
+                          className={inputClass}
                         />
                       </div>
                       <div>
-                        <label
-                          htmlFor="contact-course"
-                          className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2"
-                        >
+                        <label htmlFor="contact-course" className={labelClass}>
                           Interested In
                         </label>
-                        <select
-                          id="contact-course"
-                          name="course"
-                          value={form.course}
-                          onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F0E8] outline-none transition-all duration-200 appearance-none cursor-pointer"
-                          style={{
-                            background: "rgba(13, 11, 30, 0.6)",
-                            border: "1px solid rgba(201, 168, 76, 0.2)",
-                          }}
-                        >
-                          <option value="" className="bg-[#1A1040]">
-                            Select a course...
-                          </option>
-                          {courseOptions.map((opt) => (
-                            <option key={opt} value={opt} className="bg-[#1A1040]">
-                              {opt}
-                            </option>
-                          ))}
-                        </select>
+                        <div className="relative">
+                          <select
+                            id="contact-course"
+                            name="course"
+                            value={form.course}
+                            onChange={handleChange}
+                            className={`${inputClass} appearance-none cursor-pointer pr-10`}
+                          >
+                            <option value="">Select a course…</option>
+                            {courseOptions.map((opt) => (
+                              <option key={opt} value={opt}>
+                                {opt}
+                              </option>
+                            ))}
+                          </select>
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#A89F9B]">
+                            <ChevronRight size={18} className="rotate-90" />
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                     <div>
-                      <label
-                        htmlFor="contact-message"
-                        className="block text-xs font-semibold tracking-widest text-[#C9A84C] uppercase mb-2"
-                      >
+                      <label htmlFor="contact-message" className={labelClass}>
                         Message *
                       </label>
                       <textarea
@@ -295,24 +257,20 @@ export default function ContactPageClient() {
                         value={form.message}
                         onChange={handleChange}
                         placeholder="Tell us about yourself and what you're looking to learn..."
-                        className="w-full px-4 py-3 rounded-xl text-sm text-[#F5F0E8] placeholder-[#C8BFAD]/30 outline-none resize-none transition-all duration-200"
-                        style={{
-                          background: "rgba(13, 11, 30, 0.6)",
-                          border: "1px solid rgba(201, 168, 76, 0.2)",
-                        }}
+                        className={`${inputClass} resize-none`}
                       />
                     </div>
 
                     <button
                       type="submit"
                       id="contact-submit"
-                      className="btn-primary w-full py-4 rounded-xl flex items-center justify-center gap-2 text-sm font-semibold tracking-wide"
+                      className="btn-primary w-full py-5 rounded-[2rem] flex items-center justify-center gap-3 text-base font-black shadow-xl shadow-orange-100 transition-transform hover:scale-[1.02]"
                     >
-                      <Send size={16} />
+                      <Send size={20} />
                       Send via WhatsApp
                     </button>
 
-                    <p className="text-center text-[#C8BFAD]/40 text-xs">
+                    <p className="text-center text-slate-500 text-xs">
                       This will open WhatsApp with your message pre-filled.
                     </p>
                   </form>
