@@ -1,22 +1,21 @@
 import Link from "next/link";
-import { Clock, BarChart2, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Course } from "@/data/courses";
 
 interface CourseCardProps {
   course: Course;
-  featured?: boolean;
 }
 
-export default function CourseCard({ course, featured = false }: CourseCardProps) {
+export default function CourseCard({ course }: CourseCardProps) {
   return (
     <Link
       href={`/courses/${course.slug}`}
-      className="group bg-white rounded-[40px] p-8 border border-[#EBDBCD] hover:border-[#FF7F32] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-full"
+      className="group bg-white rounded-[32px] sm:rounded-[40px] p-6 sm:p-8 border border-[#EBDBCD] hover:border-[#FF7F32] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-full"
       aria-label={`Learn more about ${course.title.en}`}
     >
       {/* Icon */}
       <div 
-        className="w-20 h-20 rounded-3xl mb-8 flex items-center justify-center text-4xl shadow-sm transition-transform group-hover:scale-110 group-hover:rotate-3"
+        className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl mb-6 sm:mb-8 flex items-center justify-center text-3xl sm:text-4xl shadow-sm transition-transform group-hover:scale-110 group-hover:rotate-3"
         style={{ background: "#FEF7ED" }}
       >
         {course.icon}
@@ -33,14 +32,14 @@ export default function CourseCard({ course, featured = false }: CourseCardProps
           </span>
         </div>
 
-        <h3 className="text-2xl font-black text-[#3B2E2A] mb-2 group-hover:text-[#FF7F32] transition-colors">
+        <h3 className="text-xl sm:text-2xl font-black text-[#3B2E2A] mb-2 group-hover:text-[#FF7F32] transition-colors">
           {course.title.en}
         </h3>
         <p className="text-[#FF7F32]/60 text-xs font-bold italic mb-4">
           {course.title.hi}
         </p>
         
-        <p className="text-[#635A56] text-sm font-semibold leading-relaxed line-clamp-3 mb-8">
+        <p className="text-[#635A56] text-sm font-semibold leading-relaxed line-clamp-3 mb-6 sm:mb-8">
           {course.description}
         </p>
       </div>

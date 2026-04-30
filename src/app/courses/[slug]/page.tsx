@@ -57,7 +57,7 @@ export default async function CourseDetailPage({
   return (
     <>
       {/* ─── HERO ─────────────────────────────────────────────────── */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-slate-50 border-b border-slate-200">
+      <section className="relative pt-24 sm:pt-32 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-slate-50 border-b border-slate-200">
         <div className="max-w-4xl mx-auto">
           {/* Back link */}
           <Link
@@ -68,45 +68,47 @@ export default async function CourseDetailPage({
             All Courses
           </Link>
 
-          <div className="flex items-start gap-6 mb-8">
-            <div className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl flex-shrink-0 bg-white border border-slate-200 shadow-sm text-orange-600">
+          <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center text-3xl sm:text-4xl flex-shrink-0 bg-white border border-slate-200 shadow-sm text-orange-600">
               {course.icon}
             </div>
             <div>
-              <p className="text-orange-600 text-sm font-bold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
+              <p className="text-orange-600 text-xs sm:text-sm font-bold tracking-widest uppercase mb-2 font-[family-name:var(--font-cinzel)]">
                 {course.seoKeyword}
               </p>
-              <h1 className="font-[family-name:var(--font-cinzel)] text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-1">
+              <h1 className="font-[family-name:var(--font-cinzel)] text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-1">
                 {course.title.en}
               </h1>
-              <p className="font-[family-name:var(--font-cormorant)] italic text-xl text-slate-600">
+              <p className="font-[family-name:var(--font-cormorant)] italic text-lg sm:text-xl text-slate-600">
                 {course.title.hi}
               </p>
             </div>
           </div>
 
           {/* Meta badges */}
-          <div className="flex flex-wrap gap-3 mb-8">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 bg-white border border-slate-300 shadow-sm">
-              <Clock size={14} className="text-orange-600" />
+          <div className="flex flex-wrap gap-3 mb-6 sm:mb-8">
+            <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-700 bg-white border border-slate-300 shadow-sm">
+              <Clock size={12} className="text-orange-600 sm:hidden" />
+              <Clock size={14} className="text-orange-600 hidden sm:block" />
               {course.duration}
             </span>
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 bg-white border border-slate-300 shadow-sm">
-              <BarChart2 size={14} className="text-orange-600" />
+            <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold text-slate-700 bg-white border border-slate-300 shadow-sm">
+              <BarChart2 size={12} className="text-orange-600 sm:hidden" />
+              <BarChart2 size={14} className="text-orange-600 hidden sm:block" />
               {course.level}
             </span>
           </div>
 
-          <p className="text-slate-600 text-lg leading-relaxed max-w-3xl">
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-3xl">
             {course.longDescription}
           </p>
         </div>
       </section>
 
       {/* ─── CONTENT ─────────────────────────────────────────────── */}
-      <section className="section-pad px-4 sm:px-6 lg:px-8 py-16">
+      <section className="section-pad px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-10">
+          <div className="grid lg:grid-cols-3 gap-8 sm:gap-10">
             {/* Left: Modules + Description */}
             <div className="lg:col-span-2 space-y-10">
               {/* Modules */}
@@ -118,12 +120,12 @@ export default async function CourseDetailPage({
                   {course.modules.map((module, i) => (
                     <div
                       key={i}
-                      className="bg-white border border-slate-200 rounded-xl px-5 py-4 flex items-center gap-4 hover:border-orange-300 hover:shadow-sm transition-all duration-200"
+                      className="bg-white border border-slate-200 rounded-xl px-4 sm:px-5 py-3 sm:py-4 flex items-start sm:items-center gap-3 sm:gap-4 hover:border-orange-300 hover:shadow-sm transition-all duration-200"
                     >
                       <span className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 bg-orange-100 text-orange-700 border border-orange-200">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-slate-700 text-sm font-medium">
+                      <span className="text-slate-700 text-sm font-medium break-words">
                         {module.title}
                       </span>
                     </div>

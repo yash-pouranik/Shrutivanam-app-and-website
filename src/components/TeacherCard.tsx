@@ -10,10 +10,10 @@ interface TeacherCardProps {
 
 export default function TeacherCard({ teacher, detailed = false }: TeacherCardProps) {
   return (
-    <div className="bg-white rounded-[40px] p-8 border border-[#EBDBCD] hover:border-[#FF7F32] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col items-center text-center">
+    <div className="bg-white rounded-[32px] sm:rounded-[40px] p-6 sm:p-8 border border-[#EBDBCD] hover:border-[#FF7F32] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col items-center text-center">
       {/* Photo */}
       <div className="relative mb-6">
-        <div className="w-28 h-28 rounded-[35px] overflow-hidden border-4 border-[#FEF7ED] shadow-lg shadow-orange-100 group">
+        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-[28px] sm:rounded-[35px] overflow-hidden border-4 border-[#FEF7ED] shadow-lg shadow-orange-100 group">
           <Image
             src={teacher.photo}
             alt={`Photo of ${teacher.name}`}
@@ -26,10 +26,10 @@ export default function TeacherCard({ teacher, detailed = false }: TeacherCardPr
 
       {/* Name & Subject */}
       <div className="mb-6">
-        <h3 className="text-xl font-black text-[#3B2E2A] mb-1">
+        <h3 className="text-lg sm:text-xl font-black text-[#3B2E2A] mb-1">
           {teacher.name}
         </h3>
-        <p className="text-[#FF7F32] text-sm font-black uppercase tracking-widest">
+        <p className="text-[#FF7F32] text-xs sm:text-sm font-black uppercase tracking-widest">
           {teacher.subject}
         </p>
         <p className="text-[#A89F9B] text-xs font-bold italic">
@@ -45,7 +45,7 @@ export default function TeacherCard({ teacher, detailed = false }: TeacherCardPr
       </div>
 
       {/* Bio */}
-      <p className={`text-[#635A56] text-sm font-semibold leading-relaxed mb-8 ${detailed ? "" : "line-clamp-3"}`}>
+      <p className={`text-[#635A56] text-sm font-semibold leading-relaxed mb-6 sm:mb-8 ${detailed ? "" : "line-clamp-3"}`}>
         {teacher.bio}
       </p>
 

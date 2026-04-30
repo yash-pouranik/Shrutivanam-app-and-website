@@ -5,13 +5,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Users, Video, CalendarDays, LogOut, ChevronLeft, Menu } from "lucide-react";
+import { LayoutDashboard, Users, Video, CalendarDays, LogOut, ChevronLeft, Menu, Mail } from "lucide-react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 
 const ADMIN_LINKS = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
   { href: "/admin/users", label: "Users", icon: Users },
+  { href: "/admin/messages", label: "Messages", icon: Mail },
   { href: "/admin/videos", label: "Videos", icon: Video },
   { href: "/admin/meetings", label: "Meetings", icon: CalendarDays },
 ];

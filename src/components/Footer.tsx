@@ -151,7 +151,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Shrutivanam. All rights reserved.
           </p>
           <p className="text-[#FF7F32] text-sm font-black italic">
-            "सा विद्या या विमुक्तये"
+            &quot;सा विद्या या विमुक्तये&quot;
           </p>
         </div>
       </div>

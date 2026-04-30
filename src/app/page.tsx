@@ -54,28 +54,28 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative pt-32 pb-0 md:pt-40 flex flex-col items-center overflow-hidden">
+      <section className="relative pt-24 sm:pt-32 md:pt-40 pb-0 flex flex-col items-center overflow-hidden">
         {/* Floating Background Icons */}
-        <div className="absolute top-20 left-[10%] floating-element opacity-20 text-[#FF7F32]">
+        <div className="absolute top-20 left-[10%] floating-element opacity-20 text-[#FF7F32] hidden sm:block">
           <Zap size={48} fill="currentColor" />
         </div>
-        <div className="absolute top-40 right-[15%] floating-element delay-200 opacity-20 text-[#7BBD8B]">
+        <div className="absolute top-40 right-[15%] floating-element delay-200 opacity-20 text-[#7BBD8B] hidden sm:block">
           <Heart size={40} fill="currentColor" />
         </div>
-        <div className="absolute bottom-40 left-[15%] floating-element delay-400 opacity-20 text-[#F9D048]">
+        <div className="absolute bottom-40 left-[15%] floating-element delay-400 opacity-20 text-[#F9D048] hidden sm:block">
           <Star size={56} fill="currentColor" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center z-10">
           <FadeIn direction="up">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#3B2E2A] leading-tight mb-6">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-[#3B2E2A] leading-tight mb-5 sm:mb-6">
               Putting your <span className="title-underline">Tradition</span> in <br className="hidden md:block" />
               great motion
             </h1>
           </FadeIn>
 
           <FadeIn direction="up" delay={0.2}>
-            <div className="flex flex-wrap items-center justify-center gap-6 mb-10 text-sm font-bold text-[#635A56]">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-8 sm:mb-10 text-xs sm:text-sm font-bold text-[#635A56]">
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600">✓</div>
                 No Prior Prep
@@ -92,20 +92,20 @@ export default function HomePage() {
           </FadeIn>
 
           <FadeIn direction="up" delay={0.4}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16">
-              <Link href="/courses" className="btn-primary px-10 py-5 text-lg shadow-2xl shadow-orange-200">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-12 sm:mb-16 w-full">
+              <Link href="/courses" className="btn-primary w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 text-base sm:text-lg shadow-2xl shadow-orange-200 text-center">
                 Start Learning Now
               </Link>
-              <p className="max-w-[280px] text-xs font-semibold text-[#A89F9B] leading-relaxed text-left sm:text-center">
-                We just don't give our students only lecture but real life experiences.
+              <p className="max-w-[320px] text-xs sm:text-sm font-semibold text-[#A89F9B] leading-relaxed text-center sm:text-center">
+                We just don&apos;t give our students only lecture but real life experiences.
               </p>
             </div>
           </FadeIn>
 
           {/* Hero Images Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-end max-w-5xl mx-auto relative px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-end max-w-5xl mx-auto relative px-2 sm:px-4">
             <FadeIn direction="right" className="hidden md:block">
-              <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden bg-[#7BBD8B]/20 border-4 border-white shadow-2xl rotate-[-3deg]">
+              <div className="relative aspect-[4/5] rounded-[48px] sm:rounded-[60px] overflow-hidden bg-[#7BBD8B]/20 border-4 border-white shadow-2xl rotate-[-3deg]">
                 <Image 
                   src="/student_maths_1775934560279.png" 
                   alt="Student Maths" 
@@ -116,7 +116,7 @@ export default function HomePage() {
             </FadeIn>
             
             <FadeIn direction="up" delay={0.2}>
-              <div className="relative aspect-[4/5] rounded-[80px] overflow-hidden bg-[#FF7F32]/10 border-4 border-white shadow-2xl z-20">
+              <div className="relative aspect-[4/5] rounded-[56px] sm:rounded-[80px] overflow-hidden bg-[#FF7F32]/10 border-4 border-white shadow-2xl z-20">
                 <Image 
                   src="/student_yoga_1775934542751.png" 
                   alt="Student Yoga" 
@@ -127,7 +127,7 @@ export default function HomePage() {
             </FadeIn>
 
             <FadeIn direction="left" delay={0.4} className="hidden md:block">
-              <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden bg-[#F9D048]/20 border-4 border-white shadow-2xl rotate-[3deg]">
+              <div className="relative aspect-[4/5] rounded-[48px] sm:rounded-[60px] overflow-hidden bg-[#F9D048]/20 border-4 border-white shadow-2xl rotate-[3deg]">
                 <Image 
                   src="/student_sanskrit_1775934575788.png" 
                   alt="Student Sanskrit" 
@@ -140,29 +140,30 @@ export default function HomePage() {
         </div>
 
         {/* Bottom Stats Bar */}
-        <div className="w-full bg-[#3B2E2A] mt-[-60px] pt-24 pb-16 relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap justify-between items-center gap-12">
+        <div className="w-full bg-[#3B2E2A] mt-[-40px] sm:mt-[-60px] pt-16 sm:pt-24 pb-12 sm:pb-16 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row flex-wrap justify-center sm:justify-between items-center gap-8 sm:gap-12">
             {stats.map((item, i) => {
               const Icon = item.icon;
               return (
-                <div key={i} className="flex items-center gap-5">
-                  <div className="w-14 h-14 rounded-2xl bg-[#FF7F32] flex items-center justify-center text-white shadow-lg">
-                    <Icon size={28} />
+                <div key={i} className="flex items-center gap-4 sm:gap-5 w-full sm:w-auto justify-center sm:justify-start">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#FF7F32] flex items-center justify-center text-white shadow-lg">
+                    <Icon size={24} className="sm:hidden" />
+                    <Icon size={28} className="hidden sm:block" />
                   </div>
                   <div className="text-left">
-                    <p className="text-3xl font-black text-white">{item.label}</p>
-                    <p className="text-sm font-bold text-white/50">{item.desc}</p>
+                    <p className="text-2xl sm:text-3xl font-black text-white">{item.label}</p>
+                    <p className="text-xs sm:text-sm font-bold text-white/50">{item.desc}</p>
                   </div>
                 </div>
               );
             })}
-            <div className="flex -space-x-3 overflow-hidden p-2">
+            <div className="flex flex-wrap justify-center sm:justify-start -space-x-3 overflow-hidden p-2 w-full sm:w-auto">
               {[1, 2, 3, 4].map((n) => (
                 <div key={n} className="inline-block h-10 w-10 rounded-full ring-2 ring-[#3B2E2A] bg-[#FF7F32] flex items-center justify-center text-[10px] font-bold text-white uppercase">
                   U{n}
                 </div>
               ))}
-              <div className="flex items-center justify-center h-10 w-10 text-xs font-bold text-white/50 pl-4 uppercase">
+              <div className="flex items-center justify-center h-10 w-10 text-[10px] sm:text-xs font-bold text-white/50 pl-4 uppercase">
                 +12k students
               </div>
             </div>
@@ -171,33 +172,33 @@ export default function HomePage() {
       </section>
 
       {/* ABOUT SECTION */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
+          <div className="grid md:grid-cols-2 gap-12 sm:gap-20 items-center">
             <FadeIn direction="right" className="relative">
-              <div className="relative w-full aspect-square rounded-[100px] overflow-hidden bg-white p-4 shadow-xl">
-                 <div className="absolute inset-0 bg-[#F9D048]/10 rounded-[100px]" />
+              <div className="relative w-full aspect-square rounded-[72px] sm:rounded-[100px] overflow-hidden bg-white p-3 sm:p-4 shadow-xl">
+                 <div className="absolute inset-0 bg-[#F9D048]/10 rounded-[72px] sm:rounded-[100px]" />
                  <Image 
                   src="/student_sanskrit_1775934575788.png" 
                   alt="Our Mission" 
                   fill 
-                  className="object-cover rounded-[80px]"
+                  className="object-cover rounded-[56px] sm:rounded-[80px]"
                 />
               </div>
               {/* Floating Badge */}
-              <div className="absolute -bottom-10 -right-10 bg-[#FF7F32] p-8 rounded-[40px] shadow-2xl text-white">
-                <p className="text-5xl font-black mb-1">10+</p>
-                <p className="text-sm font-bold opacity-80 uppercase tracking-widest">Years Exp</p>
+              <div className="absolute -bottom-6 -right-6 sm:-bottom-10 sm:-right-10 bg-[#FF7F32] p-5 sm:p-8 rounded-[32px] sm:rounded-[40px] shadow-2xl text-white">
+                <p className="text-3xl sm:text-5xl font-black mb-1">10+</p>
+                <p className="text-xs sm:text-sm font-bold opacity-80 uppercase tracking-widest">Years Exp</p>
               </div>
             </FadeIn>
 
             <FadeIn direction="left" delay={0.2}>
-              <p className="text-[#FF7F32] font-black uppercase tracking-widest text-sm mb-4">Shaping the future of kids</p>
-              <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-8 leading-tight">
+              <p className="text-[#FF7F32] font-black uppercase tracking-widest text-xs sm:text-sm mb-4">Shaping the future of kids</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#3B2E2A] mb-6 sm:mb-8 leading-tight">
                 Authentic Vedic Wisdom <br />
                 for the <span className="text-[#FF7F32]">Modern Mind</span>
               </h2>
-              <div className="space-y-6 text-[#635A56] text-lg font-medium leading-relaxed mb-10">
+              <div className="space-y-5 sm:space-y-6 text-[#635A56] text-base sm:text-lg font-medium leading-relaxed mb-8 sm:mb-10">
                 <p>
                   We focus on one impactful lesson at a time. Shrutivanam brings you the treasures of ancient Indian knowledge — pure, undiluted, and structured for today.
                 </p>
@@ -205,7 +206,7 @@ export default function HomePage() {
                   Our ecosystem is built for sincere seekers who want to explore Vedic Maths, Sanskrit, and Philosophy with academic rigor and spiritual depth.
                 </p>
               </div>
-              <Link href="/about" className="btn-outline px-10 py-5 text-base">
+              <Link href="/about" className="btn-outline w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 text-base text-center inline-block">
                 Discover Our Story
               </Link>
             </FadeIn>
@@ -214,15 +215,15 @@ export default function HomePage() {
       </section>
 
       {/* COURSES PREVIEW */}
-      <section className="py-24 bg-white border-y border-[#EBDBCD]">
+      <section className="py-16 sm:py-24 bg-white border-y border-[#EBDBCD]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-16">
             <div className="max-w-xl">
-              <p className="text-[#7BBD8B] font-black uppercase tracking-widest text-sm mb-4">Our Programs</p>
-              <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-4">Foundation for Life</h2>
-              <p className="text-[#635A56] text-lg font-medium">Four core subjects, deeply researched and mastery-focused.</p>
+              <p className="text-[#7BBD8B] font-black uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">Our Programs</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#3B2E2A] mb-3 sm:mb-4">Foundation for Life</h2>
+              <p className="text-[#635A56] text-base sm:text-lg font-medium">Four core subjects, deeply researched and mastery-focused.</p>
             </div>
-            <Link href="/courses" className="btn-primary px-8 py-4 mb-2">View All Programs</Link>
+            <Link href="/courses" className="btn-primary w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 mb-0 sm:mb-2 text-center">View All Programs</Link>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -236,10 +237,10 @@ export default function HomePage() {
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#FEF7ED]">
-        <div className="max-w-7xl mx-auto text-center mb-16">
-           <p className="text-[#F9D048] font-black uppercase tracking-widest text-sm mb-4">Why Shrutivanam</p>
-           <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A]">Learning that sticks</h2>
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#FEF7ED]">
+        <div className="max-w-7xl mx-auto text-center mb-10 sm:mb-16">
+           <p className="text-[#F9D048] font-black uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">Why Shrutivanam</p>
+           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#3B2E2A]">Learning that sticks</h2>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
@@ -248,11 +249,12 @@ export default function HomePage() {
             const colors = ['bg-orange-100 text-orange-600', 'bg-green-100 text-green-600', 'bg-yellow-100 text-yellow-600', 'bg-blue-100 text-blue-600'];
             return (
               <FadeIn key={i} delay={i * 0.15} direction="up">
-                <div className="bg-white p-10 rounded-[40px] shadow-sm hover:shadow-xl transition-all h-full border border-transparent hover:border-[#FF7F32]/10 group">
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 ${colors[i % 4]}`}>
-                    <Icon size={32} />
+                <div className="bg-white p-6 sm:p-10 rounded-[28px] sm:rounded-[40px] shadow-sm hover:shadow-xl transition-all h-full border border-transparent hover:border-[#FF7F32]/10 group">
+                  <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-5 sm:mb-6 transition-transform group-hover:scale-110 ${colors[i % 4]}`}>
+                    <Icon size={24} className="sm:hidden" />
+                    <Icon size={32} className="hidden sm:block" />
                   </div>
-                  <h3 className="text-xl font-black text-[#3B2E2A] mb-4">{point.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-black text-[#3B2E2A] mb-3 sm:mb-4">{point.title}</h3>
                   <p className="text-[#635A56] font-semibold text-sm leading-relaxed">{point.desc}</p>
                 </div>
               </FadeIn>
@@ -262,20 +264,20 @@ export default function HomePage() {
       </section>
 
       {/* TEACHERS PREVIEW */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeIn direction="up">
-            <div className="text-center mb-16">
-              <p className="text-[#FF7F32] font-black uppercase tracking-widest text-sm mb-4">Our Gurus</p>
-              <h2 className="text-4xl md:text-5xl font-black text-[#3B2E2A] mb-4">Learn from the Best</h2>
-              <p className="text-[#635A56] text-lg font-medium">
+            <div className="text-center mb-10 sm:mb-16">
+              <p className="text-[#FF7F32] font-black uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">Our Gurus</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#3B2E2A] mb-3 sm:mb-4">Learn from the Best</h2>
+              <p className="text-[#635A56] text-base sm:text-lg font-medium">
                 Learn from teachers graduated from leading institutes and rooted in authentic Vedic traditions.
               </p>
             </div>
           </FadeIn>
 
           <div className="max-w-3xl mx-auto">
-            <div className="rounded-3xl bg-white border border-[#EBDBCD] shadow-sm p-8">
+            <div className="rounded-3xl bg-white border border-[#EBDBCD] shadow-sm p-6 sm:p-8">
               <p className="text-[#3B2E2A] text-xs font-black uppercase tracking-widest mb-6">
                 Faculty Backgrounds
               </p>

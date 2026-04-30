@@ -52,7 +52,7 @@ export default function DashboardMeetingsPage() {
           live ? "border-green-300" : showPast ? "border-slate-100 opacity-60" : "border-slate-200"
         }`}
       >
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
           <div className="flex items-start gap-4">
             <div
               className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
@@ -81,7 +81,7 @@ export default function DashboardMeetingsPage() {
               {meeting.description && (
                 <p className="text-slate-500 text-xs mt-1 leading-relaxed">{meeting.description}</p>
               )}
-              <div className="flex items-center gap-4 mt-3">
+              <div className="flex flex-wrap items-center gap-3 mt-3">
                 <span className="text-slate-400 text-xs flex items-center gap-1.5">
                   <CalendarDays size={12} />
                   {new Date(meeting.scheduledAt).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}
@@ -101,7 +101,7 @@ export default function DashboardMeetingsPage() {
               href={meeting.joinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
+              className={`flex-shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors w-full sm:w-auto ${
                 live
                   ? "bg-green-600 hover:bg-green-700 text-white shadow-sm"
                   : "bg-orange-600 hover:bg-orange-700 text-white"
