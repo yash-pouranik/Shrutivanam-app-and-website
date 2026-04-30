@@ -39,6 +39,8 @@ export default function LoginPage() {
       router.push("/admin");
     } else if (session?.user?.isActive) {
       router.push("/dashboard");
+    } else if (!session?.user?.hasPaid) {
+      router.push("/register?step=2");
     } else {
       router.push("/pending");
     }

@@ -34,6 +34,17 @@ export default proxyAuth((req) => {
   if (isLoggedIn && (nextUrl.pathname === "/login" || nextUrl.pathname === "/register")) {
     if (isAdmin) return NextResponse.redirect(new URL("/admin", nextUrl));
     if (isActive) return NextResponse.redirect(new URL("/dashboard", nextUrl));
+    
+    // If they haven't paid, allow them to be on the register page so they can complete payment
+    const hasPaid = (session?.user as any)?.hasPaid;
+    if (!hasPaid) {
+      if (nextUrl.pathname === "/register") {
+        return NextResponse.next();
+      } else {
+        return NextResponse.redirect(new URL("/register?step=2", nextUrl));
+      }
+    }
+    
     return NextResponse.redirect(new URL("/pending", nextUrl));
   }
 

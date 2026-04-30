@@ -13,6 +13,7 @@ export default function PendingPage() {
   useEffect(() => {
     if (status === "unauthenticated") router.push("/login");
     if (session?.user?.isActive) router.push("/dashboard");
+    if (session && !session.user.hasPaid && !session.user.isActive) router.push("/register?step=2");
   }, [session, status, router]);
 
   const handleCheckStatus = async () => {

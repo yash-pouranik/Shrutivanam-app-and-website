@@ -5,12 +5,18 @@ import type { NextAuthConfig } from "next-auth";
 export const authConfig = {
   providers: [], // Providers added in the full auth.ts
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       if (user) {
         token.id = user.id;
         token.role = (user as { role?: string }).role;
         token.paymentStatus = (user as { paymentStatus?: string }).paymentStatus;
         token.isActive = (user as { isActive?: boolean }).isActive;
+        token.hasPaid = (user as { hasPaid?: boolean }).hasPaid;
+      }
+      if (trigger === "update" && session) {
+        if (session.hasPaid !== undefined) {
+          token.hasPaid = session.hasPaid;
+        }
       }
       return token;
     },
@@ -20,6 +26,7 @@ export const authConfig = {
         session.user.role = token.role as string;
         session.user.paymentStatus = token.paymentStatus as string;
         session.user.isActive = token.isActive as boolean;
+        session.user.hasPaid = token.hasPaid as boolean;
       }
       return session;
     },

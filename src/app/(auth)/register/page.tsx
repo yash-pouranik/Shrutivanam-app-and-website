@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useSession, signIn } from "next-auth/react";
 import Link from "next/link";
 import { Eye, EyeOff, UserPlus, Loader2, CheckCircle, QrCode, GraduationCap } from "lucide-react";
 import Image from "next/image";
@@ -10,7 +11,21 @@ type Step = 1 | 2 | 3;
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { data: session, status, update } = useSession();
   const [step, setStep] = useState<Step>(1);
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user) {
+      if (session.user.isActive) {
+        router.push("/dashboard");
+      } else if (session.user.hasPaid) {
+        router.push("/pending");
+      } else {
+        setStep(2);
+      }
+    }
+  }, [session, status, router]);
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -58,6 +73,12 @@ export default function RegisterPage() {
       return;
     }
 
+    await signIn("credentials", {
+      email: form.email,
+      password: form.password,
+      redirect: false,
+    });
+
     setRegisteredUserId(data.userId ?? null);
     setStep(2);
   };
@@ -71,7 +92,9 @@ export default function RegisterPage() {
       setPaymentError("Please enter your transaction ID / UTR.");
       return;
     }
-    if (!registeredUserId) {
+    
+    const userIdToUse = registeredUserId || session?.user?.id;
+    if (!userIdToUse) {
       setPaymentError("Registration details missing. Please reload and try again.");
       return;
     }
@@ -81,7 +104,7 @@ export default function RegisterPage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        userId: registeredUserId,
+        userId: userIdToUse,
         transactionId: transactionId.trim(),
       }),
     });
@@ -93,6 +116,7 @@ export default function RegisterPage() {
       return;
     }
 
+    await update({ hasPaid: true });
     setStep(3);
   };
 
@@ -303,7 +327,7 @@ export default function RegisterPage() {
                     disabled={paymentLoading}
                     className="w-full py-3 rounded-xl text-sm font-semibold tracking-wide bg-orange-600 hover:bg-orange-700 disabled:bg-orange-300 text-white transition-colors"
                   >
-                    {paymentLoading ? "Saving…" : "I&apos;ve Made the Payment →"}
+                    {paymentLoading ? "Saving…" : "I've Made the Payment →"}
                   </button>
                 </div>
               )}

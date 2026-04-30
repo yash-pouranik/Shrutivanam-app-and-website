@@ -39,6 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           role: user.role,
           paymentStatus: user.paymentStatus,
           isActive: user.isActive,
+          hasPaid: !!user.paymentTransactionIdEncrypted,
         };
       },
     }),

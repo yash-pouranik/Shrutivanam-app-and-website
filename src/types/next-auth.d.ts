@@ -10,6 +10,7 @@ declare module "next-auth" {
       role: string;
       paymentStatus: string;
       isActive: boolean;
+      hasPaid: boolean;
     };
   }
 
@@ -18,6 +19,7 @@ declare module "next-auth" {
     role?: string;
     paymentStatus?: string;
     isActive?: boolean;
+    hasPaid?: boolean;
   }
 }
 
@@ -27,5 +29,6 @@ declare module "next-auth/jwt" {
     role?: string;
     paymentStatus?: string;
     isActive?: boolean;
+    hasPaid?: boolean;
   }
 }
