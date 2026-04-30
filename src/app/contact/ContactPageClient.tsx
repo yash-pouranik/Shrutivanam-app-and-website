@@ -110,7 +110,7 @@ export default function ContactPageClient() {
                   9am–7pm IST.
                 </p>
                 <a
-                  href="https://wa.me/917566585848?text=Namaste%2C%20I%20am%20interested%20in%20Shrutivanam%20courses."
+                  href="https://wa.me/9039457108?text=Namaste%2C%20I%20am%20interested%20in%20Shrutivanam%20courses."
                   target="_blank"
                   rel="noopener noreferrer"
                   id="contact-whatsapp-direct"

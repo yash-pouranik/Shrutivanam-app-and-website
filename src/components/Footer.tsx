@@ -75,9 +75,9 @@ export default function Footer() {
             {/* Social icons */}
             <div className="flex items-center gap-4">
               {[
-                { icon: MessageCircle, href: "https://wa.me/917566585848" },
-                { icon: InstagramIcon, href: "#" },
-                { icon: YoutubeIcon, href: "#" },
+                { icon: MessageCircle, href: "https://wa.me/9039457108" },
+                { icon: InstagramIcon, href: "https://www.instagram.com/shrutivanam_official?igsh=OHM1MzlmeXVtZXc0" },
+                { icon: YoutubeIcon, href: "https://youtube.com/@shrutivanam108?si=mw8Z-G0d5CuBiZYw" },
                 { icon: Mail, href: "mailto:shrutivanam108@gmail.com" }
               ].map((social, i) => {
                 const Icon = social.icon;

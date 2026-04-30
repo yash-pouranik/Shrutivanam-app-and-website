@@ -75,7 +75,7 @@ export default function CoursesPage() {
               starting point for your journey.
             </p>
             <a
-              href="https://wa.me/917566585848?text=Namaste%2C%20I%20need%20help%20choosing%20a%20course%20at%20Shrutivanam."
+              href="https://wa.me/9039457108?text=Namaste%2C%20I%20need%20help%20choosing%20a%20course%20at%20Shrutivanam."
               target="_blank"
               rel="noopener noreferrer"
               id="courses-whatsapp-guide"

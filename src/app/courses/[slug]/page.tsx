@@ -52,7 +52,7 @@ export default async function CourseDetailPage({
   const waMessage = encodeURIComponent(
     `Namaste, I am interested in the ${course.title.en} course at Shrutivanam. Please provide more information.`
   );
-  const waUrl = `https://wa.me/917566585848?text=${waMessage}`;
+  const waUrl = `https://wa.me/9039457108?text=${waMessage}`;
 
   return (
     <>

@@ -11,7 +11,7 @@ export default function WhatsAppStrip({
   title = "Have Questions? We're Here to Help.",
   subtitle = "प्रश्न हैं? संपर्क करें",
 }: WhatsAppStripProps) {
-  const waUrl = `https://wa.me/917566585848?text=${message}`;
+  const waUrl = `https://wa.me/9039457108?text=${message}`;
 
   return (
     <section className="relative overflow-hidden py-16 sm:py-24 px-4 bg-[#3B2E2A]">
