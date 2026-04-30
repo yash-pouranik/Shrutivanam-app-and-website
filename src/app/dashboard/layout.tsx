@@ -67,7 +67,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   className="w-5 h-5 object-contain"
                 />
               </div>
-              <span className="font-bold text-slate-900">Shrutivanam</span>
+              <Image
+                src="/shrutivanam.txt.png"
+                alt="Shrutivanam"
+                width={150}
+                height={40}
+                className="h-8 w-auto object-contain"
+              />
             </Link>
           )}
           <button

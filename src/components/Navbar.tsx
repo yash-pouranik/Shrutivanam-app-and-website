@@ -113,9 +113,13 @@ export default function Navbar() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl md:text-2xl font-black tracking-tight text-[#3B2E2A] leading-tight">
-                  Shruti<span className="text-[#FF7F32]">vanam</span>
-                </span>
+                <Image
+                  src="/shrutivanam.txt.png"
+                  alt="Shrutivanam"
+                  width={292}
+                  height={78}
+                  className="h-9 md:h-10 w-auto object-contain"
+                />
                 {navType !== "public" && (
                    <span className="text-[10px] font-bold text-[#FF7F32] tracking-[0.2em] uppercase">
                    {navType === "admin" ? "Admin Panel" : "Student Hub"}
@@ -259,7 +263,13 @@ export default function Navbar() {
                 className="w-9 h-9 object-contain"
               />
             </div>
-            <p className="text-xl font-black text-[#3B2E2A] tracking-tight">Shrutivanam</p>
+            <Image
+              src="/shrutivanam.txt.png"
+              alt="Shrutivanam"
+              width={270}
+              height={72}
+              className="h-12 w-auto object-contain mx-auto"
+            />
             <p className="text-[10px] text-[#FF7F32] tracking-[0.2em] uppercase mt-2 font-bold opacity-80">
                {navType === "public" ? "Wisdom Hub" : navType === "admin" ? "Admin Panel" : "Student Hub"}
             </p>

@@ -59,9 +59,13 @@ export default function Footer() {
                   className="w-9 h-9 object-contain"
                 />
               </div>
-              <span className="text-3xl font-black tracking-tight text-[#3B2E2A]">
-                Shruti<span className="text-[#FF7F32]">vanam</span>
-              </span>
+              <Image
+                src="/shrutivanam.txt.png"
+                alt="Shrutivanam"
+                width={270}
+                height={72}
+                className="h-10 sm:h-12 w-auto object-contain"
+              />
             </Link>
             
             <p className="text-[#635A56] text-lg font-semibold leading-relaxed mb-10 max-w-md">

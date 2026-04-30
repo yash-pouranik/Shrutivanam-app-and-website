@@ -111,7 +111,13 @@ export default function RegisterPage() {
               />
             </div>
             <div>
-              <p className="text-sm font-semibold text-slate-800">Shrutivanam</p>
+              <Image
+                src="/shrutivanam.txt.png"
+                alt="Shrutivanam"
+                width={150}
+                height={40}
+                className="h-8 w-auto object-contain mb-1"
+              />
               <p className="text-xs text-slate-500">Ancient Wisdom, Modern Learning</p>
             </div>
           </div>
@@ -249,12 +255,14 @@ export default function RegisterPage() {
                   </h2>
                   <p className="text-slate-500 text-xs mb-5">Step 2 of 3 — Scan &amp; Pay</p>
 
-                  <div className="w-40 h-40 rounded-2xl mx-auto mb-5 flex items-center justify-center bg-slate-50 border-2 border-dashed border-slate-300">
-                    <div className="text-slate-400 text-xs text-center px-4">
-                      <QrCode size={40} className="mx-auto mb-2 text-slate-300" />
-                      Place your UPI QR code here
-                      <br />
-                      <span className="text-[10px]">(/public/qr-code.png)</span>
+                  <div className="w-48 h-48 rounded-2xl mx-auto mb-5 flex items-center justify-center bg-white border border-slate-200 shadow-sm overflow-hidden p-2">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src="/qr-code.png"
+                        alt="UPI QR Code"
+                        fill
+                        className="object-contain"
+                      />
                     </div>
                   </div>
 

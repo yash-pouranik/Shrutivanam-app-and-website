@@ -59,7 +59,13 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <p className="text-sm font-semibold text-slate-800">Shrutivanam</p>
+              <Image
+                src="/shrutivanam.txt.png"
+                alt="Shrutivanam"
+                width={150}
+                height={40}
+                className="h-8 w-auto object-contain mb-1"
+              />
               <p className="text-xs text-slate-500">Ancient Wisdom, Modern Learning</p>
             </div>
           </div>
