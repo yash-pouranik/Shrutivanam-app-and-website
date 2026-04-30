@@ -37,9 +37,12 @@ const coursesLinks = [
 export default function Footer() {
   const pathname = usePathname();
 
-  // Hide footer on dashboard and admin pages
+  // Hide footer on dashboard, admin, and auth pages
   const isInternalPage =
-    pathname.startsWith("/dashboard") || pathname.startsWith("/admin");
+    pathname.startsWith("/dashboard") || 
+    pathname.startsWith("/admin") ||
+    pathname === "/login" ||
+    pathname === "/register";
 
   if (isInternalPage) return null;
 
